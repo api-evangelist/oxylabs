@@ -1,0 +1,387 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oxylabs Web Intelligence APIs
+  description: Oxylabs provides web scraping and data extraction APIs including the Web Scraper API (Realtime and Push-Pull),
+    the Dashboard API for usage and statistics, and the Residential Public API for sub-user and stats management.
+  tags:
+  - Oxylabs
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: oxylabs
+    baseUri: https://realtime.oxylabs.io/v1
+    description: Oxylabs Web Intelligence APIs HTTP API.
+    authentication:
+      type: basic
+      username: '{{OXYLABS_USERNAME}}'
+      password: '{{OXYLABS_PASSWORD}}'
+    resources:
+    - name: queries
+      path: /queries
+      operations:
+      - name: submitquery
+        method: POST
+        description: Submit a scraping job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: stats-v1-filters-instances
+      path: /stats/v1/filters/instances
+      operations:
+      - name: liststatsfilters
+        method: GET
+        description: List statistics filter instances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: stats-v1-usage
+      path: /stats/v1/usage
+      operations:
+      - name: getusagestats
+        method: GET
+        description: Get usage statistics
+        inputParameters:
+        - name: from
+          in: query
+          type: string
+        - name: to
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: login
+      path: /login
+      operations:
+      - name: residentiallogin
+        method: POST
+        description: Residential API login
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-userid-sub-users
+      path: /users/{userId}/sub-users
+      operations:
+      - name: listsubusers
+        method: GET
+        description: List sub-users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createsubuser
+        method: POST
+        description: Create a sub-user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-userid-sub-users-subuserid
+      path: /users/{userId}/sub-users/{subUserId}
+      operations:
+      - name: getsubuser
+        method: GET
+        description: Get sub-user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatesubuser
+        method: PATCH
+        description: Update sub-user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletesubuser
+        method: DELETE
+        description: Delete sub-user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-userid-sub-users-subuserid-target-stats
+      path: /users/{userId}/sub-users/{subUserId}/target-stats
+      operations:
+      - name: getsubusertargetstats
+        method: GET
+        description: Get sub-user target statistics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-userid-client-stats
+      path: /users/{userId}/client-stats
+      operations:
+      - name: getclientstats
+        method: GET
+        description: Get client statistics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: oxylabs-rest
+    description: REST adapter for Oxylabs Web Intelligence APIs.
+    resources:
+    - path: /queries
+      name: submitquery
+      operations:
+      - method: POST
+        name: submitquery
+        description: Submit a scraping job
+        call: oxylabs.submitquery
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /stats/v1/filters/instances
+      name: liststatsfilters
+      operations:
+      - method: GET
+        name: liststatsfilters
+        description: List statistics filter instances
+        call: oxylabs.liststatsfilters
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /stats/v1/usage
+      name: getusagestats
+      operations:
+      - method: GET
+        name: getusagestats
+        description: Get usage statistics
+        call: oxylabs.getusagestats
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /login
+      name: residentiallogin
+      operations:
+      - method: POST
+        name: residentiallogin
+        description: Residential API login
+        call: oxylabs.residentiallogin
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/{userId}/sub-users
+      name: listsubusers
+      operations:
+      - method: GET
+        name: listsubusers
+        description: List sub-users
+        call: oxylabs.listsubusers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/{userId}/sub-users
+      name: createsubuser
+      operations:
+      - method: POST
+        name: createsubuser
+        description: Create a sub-user
+        call: oxylabs.createsubuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/{userId}/sub-users/{subUserId}
+      name: getsubuser
+      operations:
+      - method: GET
+        name: getsubuser
+        description: Get sub-user
+        call: oxylabs.getsubuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/{userId}/sub-users/{subUserId}
+      name: updatesubuser
+      operations:
+      - method: PATCH
+        name: updatesubuser
+        description: Update sub-user
+        call: oxylabs.updatesubuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/{userId}/sub-users/{subUserId}
+      name: deletesubuser
+      operations:
+      - method: DELETE
+        name: deletesubuser
+        description: Delete sub-user
+        call: oxylabs.deletesubuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/{userId}/sub-users/{subUserId}/target-stats
+      name: getsubusertargetstats
+      operations:
+      - method: GET
+        name: getsubusertargetstats
+        description: Get sub-user target statistics
+        call: oxylabs.getsubusertargetstats
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/{userId}/client-stats
+      name: getclientstats
+      operations:
+      - method: GET
+        name: getclientstats
+        description: Get client statistics
+        call: oxylabs.getclientstats
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: oxylabs-mcp
+    transport: http
+    description: MCP adapter for Oxylabs Web Intelligence APIs for AI agent use.
+    tools:
+    - name: submitquery
+      description: Submit a scraping job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oxylabs.submitquery
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: liststatsfilters
+      description: List statistics filter instances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oxylabs.liststatsfilters
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getusagestats
+      description: Get usage statistics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oxylabs.getusagestats
+      with:
+        from: tools.from
+        to: tools.to
+      inputParameters:
+      - name: from
+        type: string
+        description: from
+      - name: to
+        type: string
+        description: to
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: residentiallogin
+      description: Residential API login
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oxylabs.residentiallogin
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listsubusers
+      description: List sub-users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oxylabs.listsubusers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createsubuser
+      description: Create a sub-user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oxylabs.createsubuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getsubuser
+      description: Get sub-user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oxylabs.getsubuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatesubuser
+      description: Update sub-user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oxylabs.updatesubuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletesubuser
+      description: Delete sub-user
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oxylabs.deletesubuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getsubusertargetstats
+      description: Get sub-user target statistics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oxylabs.getsubusertargetstats
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getclientstats
+      description: Get client statistics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oxylabs.getclientstats
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    OXYLABS_USERNAME: OXYLABS_USERNAME
+    OXYLABS_PASSWORD: OXYLABS_PASSWORD
