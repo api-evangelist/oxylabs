@@ -37,7 +37,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.oxylabs.io/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.oxylabs.io/
       - type: OpenAPI
         url: >-
@@ -47,7 +47,7 @@ common:
     url: https://oxylabs.io/
   - type: Documentation
     url: https://developers.oxylabs.io/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/oxylabs
 maintainers:
   - FN: Kin Lane
