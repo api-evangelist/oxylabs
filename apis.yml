@@ -1,59 +1,531 @@
 aid: oxylabs
 name: Oxylabs
-description: Oxylabs is a web intelligence platform providing premium proxy networks, web scraping APIs, and data collection
-  tools for large-scale web data extraction. It includes the Web Scraper API (Realtime and Push-Pull), Dashboard API for usage
-  and statistics, and the Residential Public API for sub-user and statistics management.
+description: Oxylabs is a Lithuanian (Vilnius-based) web intelligence platform providing premium proxy
+  networks (Residential, Datacenter, Mobile, ISP, Dedicated), web data acquisition APIs (Web Scraper API,
+  SERP Scraper API, E-Commerce Scraper API, Real Estate Scraper API, Web Unblocker, Headless Browser),
+  AI-native scraping tools (AI Studio — AI Scraper, AI Crawler, AI Map, Browser Agent, AI Search), an
+  official MCP server, and ready-to-deliver datasets. The platform serves large-scale public web data
+  extraction for e-commerce intelligence, brand protection, market research, SEO/SERP monitoring,
+  cybersecurity, and AI/LLM training pipelines.
 type: Index
+kind: contract
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
+- AI Web Scraping
+- Bot Mitigation Bypass
+- CAPTCHA Solving
 - Data Extraction
+- Datacenter Proxies
+- Datasets
+- E-Commerce Data
+- Headless Browser
+- ISP Proxies
+- Mobile Proxies
 - Proxies
+- Residential Proxies
+- SERP
+- Scraper API
 - Scraping
+- Web Data
 - Web Intelligence
+- Web Unblocker
 url: https://raw.githubusercontent.com/api-evangelist/oxylabs/refs/heads/main/apis.yml
 created: '2026-03-29'
-modified: '2026-05-19'
+modified: '2026-05-25'
 specificationVersion: '0.19'
 apis:
-- aid: oxylabs:oxylabs
-  name: Oxylabs
-  description: Oxylabs is a web intelligence platform providing premium proxy networks, web scraping APIs, and data collection
-    tools for large-scale web data extraction.
-  humanURL: https://oxylabs.io/
+- aid: oxylabs:oxylabs-web-scraper-api
+  name: Oxylabs Web Scraper API
+  description: General-purpose web scraping API that returns rendered HTML and structured JSON from
+    public web pages. Two delivery modes — Realtime (synchronous request/response against
+    realtime.oxylabs.io) and Push-Pull (asynchronous job submission with polling or callback against
+    data.oxylabs.io). Supports JavaScript rendering, geo-targeting, locale, custom headers, parsing
+    instructions, browser instructions, and pluggable parsers for SERP, e-commerce, real-estate, and
+    universal targets. Authentication is HTTP Basic with sub-account credentials.
+  humanURL: https://developers.oxylabs.io/scraping-solutions/web-scraper-api
   baseURL: https://realtime.oxylabs.io/v1
   tags:
   - Data Extraction
-  - Proxies
+  - JavaScript Rendering
+  - Scraper API
   - Scraping
+  - Web Data
   - Web Intelligence
   properties:
   - type: Documentation
-    url: https://developers.oxylabs.io/
+    url: https://developers.oxylabs.io/scraping-solutions/web-scraper-api
   - type: GettingStarted
-    url: https://developers.oxylabs.io/
+    url: https://developers.oxylabs.io/get-started/quick-start-web-scraper-api
+  - type: Features
+    url: https://developers.oxylabs.io/scraping-solutions/web-scraper-api/features
   - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/oxylabs/refs/heads/main/openapi/oxylabs-openapi.yml
+    url: openapi/oxylabs-openapi.yml
   - type: NaftikoCapability
     url: capabilities/oxylabs.yaml
+- aid: oxylabs:oxylabs-serp-scraper-api
+  name: Oxylabs SERP Scraper API
+  description: Search-engine results page scraping for Google (Search, Ads, Images, Lens, Maps, Suggest,
+    Shopping, Travel, Trends, AI Overviews, AI Mode), Bing (Search, Hotels), Baidu, Yandex, DuckDuckGo,
+    Naver, and others. Returns structured JSON results with built-in localization (geo_location,
+    locale, domain), pagination, and JavaScript-rendered SERP features. Same submission contract as
+    Web Scraper API.
+  humanURL: https://developers.oxylabs.io/api-targets/search-engines
+  baseURL: https://realtime.oxylabs.io/v1
+  tags:
+  - Bing
+  - Google
+  - SEO
+  - SERP
+  - Scraper API
+  - Search Engines
+  properties:
+  - type: Documentation
+    url: https://developers.oxylabs.io/api-targets/search-engines
+  - type: Documentation
+    url: https://oxylabs.io/products/scraper-api/serp
+  - type: Documentation
+    url: https://developers.oxylabs.io/scraping-solutions/web-scraper-api/targets/google
+- aid: oxylabs:oxylabs-ecommerce-scraper-api
+  name: Oxylabs E-Commerce Scraper API
+  description: Pre-built scraping targets for major e-commerce platforms — Amazon (search, product,
+    reviews, questions, best sellers, offer listing, ASIN), Walmart, eBay, Etsy, Target, Best Buy,
+    Wayfair, Kroger, Macy's, Home Depot, Lowes, Costco, Wholefoods, Newegg, Idealo, MediaMarkt,
+    AliExpress, 1688, Shein, Lazada, Trip, Trivago, Priceline, MercadoLivre, Falabella, Rakuten and
+    more. Returns parsed JSON for search results, product detail pages, pricing, reviews, and category
+    pages.
+  humanURL: https://developers.oxylabs.io/scraping-solutions/web-scraper-api/targets
+  baseURL: https://realtime.oxylabs.io/v1
+  tags:
+  - Amazon
+  - E-Commerce
+  - Product Data
+  - Pricing Intelligence
+  - Scraper API
+  - Walmart
+  properties:
+  - type: Documentation
+    url: https://oxylabs.io/products/scraper-api/ecommerce
+  - type: Documentation
+    url: https://developers.oxylabs.io/scraping-solutions/web-scraper-api/targets/amazon
+  - type: Documentation
+    url: https://developers.oxylabs.io/scraping-solutions/web-scraper-api/targets/north-american-e-commerce
+- aid: oxylabs:oxylabs-web-unblocker
+  name: Oxylabs Web Unblocker
+  description: AI-driven proxy solution exposed as a single HTTPS endpoint (unblock.oxylabs.io:60000)
+    that handles proxy rotation, browser fingerprinting, JavaScript rendering, CAPTCHA solving, and
+    bot-mitigation bypass automatically. Used as a drop-in proxy in any HTTP client; returns rendered
+    HTML. Supports custom headers, geo-targeting, and beta browser instructions.
+  humanURL: https://developers.oxylabs.io/products/web-unblocker
+  baseURL: https://unblock.oxylabs.io:60000
+  tags:
+  - Anti-Bot
+  - Bot Mitigation Bypass
+  - CAPTCHA Solving
+  - JavaScript Rendering
+  - Proxy
+  - Web Unblocker
+  properties:
+  - type: Documentation
+    url: https://developers.oxylabs.io/products/web-unblocker
+  - type: GettingStarted
+    url: https://developers.oxylabs.io/get-started/quick-start-web-unblocker
+  - type: Documentation
+    url: https://oxylabs.io/products/web-unblocker
+- aid: oxylabs:oxylabs-headless-browser
+  name: Oxylabs Headless Browser
+  description: Cloud-hosted headless browser service exposed via Chrome DevTools Protocol (CDP) and
+    Selenium / Playwright / Puppeteer. Each remote browser session is geo-targetable, includes premium
+    proxy egress, and supports script automation, screenshots, network capture, and complex
+    interaction flows at scale.
+  humanURL: https://developers.oxylabs.io/products/headless-browser
+  baseURL: https://headless.oxylabs.io
+  tags:
+  - Browser Automation
+  - CDP
+  - Headless Browser
+  - Playwright
+  - Puppeteer
+  - Selenium
+  properties:
+  - type: Documentation
+    url: https://developers.oxylabs.io/products/headless-browser
+  - type: GettingStarted
+    url: https://developers.oxylabs.io/get-started/quick-start-headless-browser
+  - type: Documentation
+    url: https://oxylabs.io/products/headless-browser
+- aid: oxylabs:oxylabs-residential-proxies
+  name: Oxylabs Residential Proxies
+  description: Rotating residential IP pool (195M+ IPs across 195 countries) for accessing geo-fenced
+    and consumer-protected web content. HTTP/HTTPS/SOCKS5 endpoints with country, city, ASN, state,
+    coordinates, and ZIP/postal code targeting. Supports sticky sessions, US/EU/global entry nodes,
+    and a dedicated China entry node.
+  humanURL: https://developers.oxylabs.io/proxies/residential-proxies
+  baseURL: https://pr.oxylabs.io:7777
+  tags:
+  - Geo-Targeting
+  - Proxies
+  - Residential Proxies
+  - Rotating Proxies
+  properties:
+  - type: Documentation
+    url: https://developers.oxylabs.io/proxies/residential-proxies
+  - type: GettingStarted
+    url: https://developers.oxylabs.io/get-started/quick-start-proxies
+  - type: Documentation
+    url: https://oxylabs.io/products/residential-proxy-pool
+- aid: oxylabs:oxylabs-residential-public-api
+  name: Oxylabs Residential Public API
+  description: Sub-user management and usage-statistics API for residential proxy customers. Exchanges
+    HTTP Basic credentials for a bearer token via /login, then exposes endpoints for creating,
+    listing, updating, and deleting sub-users; querying traffic limits and statuses; and pulling
+    per-sub-user target and client statistics.
+  humanURL: https://developers.oxylabs.io/products/proxies/residential-proxies/public-api
+  baseURL: https://residential-api.oxylabs.io/v2
+  tags:
+  - Proxies
+  - Residential Proxies
+  - Sub-User Management
+  - Usage Statistics
+  properties:
+  - type: Documentation
+    url: https://developers.oxylabs.io/products/proxies/residential-proxies/public-api
+  - type: OpenAPI
+    url: openapi/oxylabs-openapi.yml
+- aid: oxylabs:oxylabs-datacenter-proxies
+  name: Oxylabs Datacenter Proxies
+  description: High-speed shared, dedicated, and self-service datacenter IP proxies for fast public
+    data gathering. Includes a free trial pool of datacenter IPs. Authentication via username/password
+    or IP whitelisting. HTTP, HTTPS, and SOCKS5 supported.
+  humanURL: https://developers.oxylabs.io/proxies/datacenter-proxies
+  baseURL: https://dc.oxylabs.io:8000
+  tags:
+  - Datacenter Proxies
+  - Dedicated Proxies
+  - Proxies
+  - Shared Proxies
+  properties:
+  - type: Documentation
+    url: https://developers.oxylabs.io/proxies/datacenter-proxies
+  - type: Documentation
+    url: https://oxylabs.io/products/datacenter-proxies
+- aid: oxylabs:oxylabs-mobile-proxies
+  name: Oxylabs Mobile Proxies
+  description: 5G / 4G / 3G / LTE rotating mobile IP proxies sourced from real mobile carriers.
+    Country, city, coordinates, and ASN/carrier targeting. Designed for use cases that require
+    high-trust mobile-network egress (ad verification, app testing, mobile-only content).
+  humanURL: https://developers.oxylabs.io/products/proxies/mobile-proxies
+  baseURL: https://pr.oxylabs.io:7777
+  tags:
+  - 5G
+  - LTE
+  - Mobile Proxies
+  - Proxies
+  properties:
+  - type: Documentation
+    url: https://developers.oxylabs.io/products/proxies/mobile-proxies
+  - type: Documentation
+    url: https://oxylabs.io/products/mobile-proxies
+- aid: oxylabs:oxylabs-isp-proxies
+  name: Oxylabs ISP Proxies
+  description: Static residential (ISP) proxies that combine the legitimacy of residential IPs with
+    the speed and stability of datacenter infrastructure. Dedicated and shared options across major
+    geographies, with both self-service and enterprise (dedicated ISP enterprise) tiers.
+  humanURL: https://developers.oxylabs.io/proxies/isp-proxies
+  baseURL: https://isp.oxylabs.io:8001
+  tags:
+  - ISP Proxies
+  - Proxies
+  - Static Residential
+  properties:
+  - type: Documentation
+    url: https://developers.oxylabs.io/proxies/isp-proxies
+  - type: Documentation
+    url: https://developers.oxylabs.io/proxies/dedicated-isp-enterprise
+- aid: oxylabs:oxylabs-dashboard-api
+  name: Oxylabs Dashboard API
+  description: Account-management API for Oxylabs customers. Exposes usage statistics, filter
+    instances, billing data, and team / sub-account management primitives used by the Oxylabs customer
+    dashboard. Authentication via bearer token.
+  humanURL: https://developers.oxylabs.io/dashboard/dashboard-api
+  baseURL: https://api.oxylabs.io
+  tags:
+  - Account Management
+  - Dashboard
+  - Statistics
+  - Usage Reporting
+  properties:
+  - type: Documentation
+    url: https://developers.oxylabs.io/dashboard/dashboard-api
+  - type: Documentation
+    url: https://developers.oxylabs.io/dashboard/teams
+  - type: Documentation
+    url: https://developers.oxylabs.io/dashboard/billing-information
+  - type: OpenAPI
+    url: openapi/oxylabs-openapi.yml
+- aid: oxylabs:oxylabs-ai-studio
+  name: Oxylabs AI Studio
+  description: Suite of AI-native data acquisition primitives — AI Scraper (turn any URL into
+    structured JSON or markdown from a natural-language schema), AI Crawler (URL-seed crawl + extract),
+    AI Map (LLM-driven sitemap discovery), Browser Agent (multi-step agentic browser actions), and AI
+    Search (natural-language query → structured web data). Exposed via REST APIs and official
+    TypeScript and Python SDKs.
+  humanURL: https://oxylabs.io/products/scraper-api/ai
+  baseURL: https://api.oxylabs.io
+  tags:
+  - AI Agents
+  - AI Scraping
+  - Browser Agent
+  - LLM
+  - Structured Extraction
+  properties:
+  - type: Documentation
+    url: https://developers.oxylabs.io/get-started/quick-start-ai-studio
+  - type: Documentation
+    url: https://oxylabs.io/products/scraper-api/ai
+  - type: SDK
+    url: https://github.com/oxylabs/oxylabs-ai-studio-py
+  - type: SDK
+    url: https://github.com/oxylabs/oxylabs-ai-studio-js
+  - type: Plugin
+    url: https://github.com/oxylabs/oxylabs-ai-studio-openclaw
+- aid: oxylabs:oxylabs-mcp-server
+  name: Oxylabs MCP Server
+  description: Official Model Context Protocol server that exposes Oxylabs Web Scraper API, AI Studio,
+    and proxy capabilities as MCP tools to Claude Code, Claude Desktop, Cursor, and any
+    MCP-compatible AI client. Includes universal scrape, Google search, Amazon product, and
+    AI-Scraper tools out of the box.
+  humanURL: https://github.com/oxylabs/oxylabs-mcp
+  baseURL: https://github.com/oxylabs/oxylabs-mcp
+  tags:
+  - AI Agents
+  - Claude
+  - Cursor
+  - MCP
+  - Model Context Protocol
+  properties:
+  - type: Documentation
+    url: https://github.com/oxylabs/oxylabs-mcp
+  - type: MCPServer
+    url: https://github.com/oxylabs/oxylabs-mcp
+- aid: oxylabs:oxylabs-datasets
+  name: Oxylabs Datasets
+  description: Pre-collected, ready-to-deliver web datasets for e-commerce (Amazon, Google Shopping,
+    Best Buy, Walmart, eBay), job postings (Indeed, Glassdoor, LinkedIn), product reviews, company
+    intelligence, community-and-code, and real-estate. Delivered as bulk files (JSON/CSV/Parquet) or
+    via S3/GCS/Azure Blob; refreshed on schedule. Custom-dataset service available on request.
+  humanURL: https://oxylabs.io/products/datasets
+  baseURL: https://oxylabs.io/products/datasets
+  tags:
+  - Bulk Data
+  - Company Data
+  - Datasets
+  - E-Commerce Data
+  - Job Posting Data
+  - Web Data
+  properties:
+  - type: Documentation
+    url: https://oxylabs.io/products/datasets
+  - type: Documentation
+    url: https://oxylabs.io/products/datasets/ecommerce
+  - type: Documentation
+    url: https://oxylabs.io/products/datasets/job-posting
+  - type: Documentation
+    url: https://oxylabs.io/products/datasets/community-and-code
 common:
-- type: LinkedIn
-  url: https://www.linkedin.com/company/oxylabs-io
+- type: Portal
+  url: https://oxylabs.io/
 - type: Website
   url: https://oxylabs.io/
 - type: Documentation
   url: https://developers.oxylabs.io/
+- name: API Targets Catalog
+  type: Documentation
+  url: https://developers.oxylabs.io/api-targets
+- name: Products Overview
+  type: Documentation
+  url: https://oxylabs.io/products
+- name: Integrations Catalog
+  type: Documentation
+  url: https://oxylabs.io/integrations
+- type: GettingStarted
+  url: https://developers.oxylabs.io/get-started/quick-start-proxies
+- type: SignUp
+  url: https://dashboard.oxylabs.io/en/registration
+- type: Dashboard
+  url: https://dashboard.oxylabs.io/
+- type: StatusPage
+  url: https://uptime.oxylabs.io/
+- type: ChangeLog
+  url: https://developers.oxylabs.io/changelog
+- name: Release Notes
+  type: ChangeLog
+  url: https://oxylabs.io/developers/release-notes
+- type: RSS
+  url: https://developers.oxylabs.io/rss.xml
+- name: LLMs.txt
+  type: LLMsTxt
+  url: https://oxylabs.io/llms.txt
+- type: HelpCenter
+  url: https://developers.oxylabs.io/help-center
+- type: Support
+  url: https://oxylabs.io/contact-us
+- name: Have a Question
+  type: Support
+  url: https://developers.oxylabs.io/have-a-question
+- type: Pricing
+  url: https://oxylabs.io/pricing
+- type: Blog
+  url: https://oxylabs.io/blog
+- name: Oxylabs Experts Lessons
+  type: Training
+  url: https://experts.oxylabs.io/lessons
+- name: Oxylabs Academy
+  type: Training
+  url: https://oxylabs.io/resources
+- type: Careers
+  url: https://career.oxylabs.io/
+- type: PrivacyPolicy
+  url: https://oxylabs.io/legal/privacy
+- type: TermsOfService
+  url: https://oxylabs.io/legal/terms-of-service
+- name: Compliance
+  type: TrustCenter
+  url: https://oxylabs.io/legal
+- name: Sustainability
+  type: Documentation
+  url: https://oxylabs.io/sustainability
+- name: Core Values
+  type: Documentation
+  url: https://oxylabs.io/core-values
+- name: Press Area
+  type: Press
+  url: https://oxylabs.io/press-area
+- name: About Us
+  type: AboutUs
+  url: https://oxylabs.io/about-us
+- type: LinkedIn
+  url: https://www.linkedin.com/company/oxylabs-io
+- type: Twitter
+  url: https://twitter.com/oxylabs
 - type: GitHubOrganization
   url: https://github.com/oxylabs
-- name: MCP Server
-  url: https://github.com/oxylabs/oxylabs-mcp
+- name: Oxylabs Repository Guide
+  type: Documentation
+  url: https://github.com/oxylabs/oxylabs-readme
+- name: Oxylabs MCP Server
   type: MCPServer
+  url: https://github.com/oxylabs/oxylabs-mcp
 - name: Agent Skills
-  url: https://github.com/oxylabs/agent-skills
   type: AgentSkill
-- type: LLMsTxt
-  url: https://oxylabs.io/llms.txt
+  url: https://github.com/oxylabs/agent-skills
+- name: Python SDK (Web Scraper API)
+  type: SDK
+  url: https://github.com/oxylabs/oxylabs-sdk-python
+- name: Go SDK (Web Scraper API)
+  type: SDK
+  url: https://github.com/oxylabs/oxylabs-sdk-go
+- name: AI Studio Python SDK
+  type: SDK
+  url: https://github.com/oxylabs/oxylabs-ai-studio-py
+- name: AI Studio JavaScript / TypeScript SDK
+  type: SDK
+  url: https://github.com/oxylabs/oxylabs-ai-studio-js
+- name: AI Studio Openclaw Plugin
+  type: Plugin
+  url: https://github.com/oxylabs/oxylabs-ai-studio-openclaw
+- name: AI Browser Agent (Python)
+  type: SDK
+  url: https://github.com/oxylabs/browser-agent-py
+- name: AI Crawler (Python)
+  type: SDK
+  url: https://github.com/oxylabs/ai-crawler-py
+- name: AI Map (Python)
+  type: SDK
+  url: https://github.com/oxylabs/ai-map-py
+- name: AI Search (Python)
+  type: SDK
+  url: https://github.com/oxylabs/AI-Search-py
+- name: AI Scraper (Python)
+  type: SDK
+  url: https://github.com/oxylabs/ai-scraper-py
+- name: OxyMouse — Mouse Movement Library
+  type: SDK
+  url: https://github.com/oxylabs/OxyMouse
+- name: OxyParser
+  type: SDK
+  url: https://github.com/oxylabs/OxyParser
+- name: Web Unblocker (Code Examples)
+  type: CodeExamples
+  url: https://github.com/oxylabs/web-unblocker
+- name: Web Scraper API Scheduler
+  type: Tool
+  url: https://github.com/oxylabs/Oxylabs-Web-Scraper-API-Scheduler
+- name: Oxy Proxy Chrome Extension
+  type: Tool
+  url: https://github.com/oxylabs/proxy-chrome-extension
+- name: Proxy Integrations (Selenium, Playwright, Puppeteer, aiohttp)
+  type: CodeExamples
+  url: https://github.com/oxylabs/proxy-integrations
+- name: Product Integrations
+  type: CodeExamples
+  url: https://github.com/oxylabs/product-integrations
+- name: Quick Start Guide
+  type: CodeExamples
+  url: https://github.com/oxylabs/quick-start-guide
+- name: Web Scraping Tutorials
+  type: CodeExamples
+  url: https://github.com/oxylabs/web-scraping-tutorials
+- type: Plans
+  url: plans/oxylabs-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/oxylabs-rate-limits.yml
+- type: FinOps
+  url: finops/oxylabs-finops.yml
+- type: Features
+  data:
+  - Web Scraper API with Realtime (sync) and Push-Pull (async) delivery modes
+  - SERP Scraper API for Google, Bing, Baidu, Yandex, Naver, DuckDuckGo (Search, Ads, Images, Lens,
+    Maps, Suggest, Shopping, Travel, Trends, AI Overviews, AI Mode)
+  - E-Commerce Scraper API for Amazon, Walmart, eBay, Etsy, Target, Best Buy, AliExpress, 1688, Shein,
+    Lazada, Trip, Trivago, MercadoLivre and more
+  - Real Estate Scraper API (Redfin, Zillow patterns)
+  - Web Unblocker — single endpoint that handles proxy rotation, fingerprinting, JS rendering, and
+    CAPTCHA solving automatically
+  - Headless Browser cloud service with Chrome DevTools Protocol, Playwright, Puppeteer, Selenium
+    support
+  - AI Studio — AI Scraper, AI Crawler, AI Map, Browser Agent, AI Search
+  - AI Web Scraper Copilot — code generator that produces Requests / Parsing / API integration code
+  - Residential Proxies (195M+ IPs across 195 countries) with country / city / ASN / state /
+    coordinates / ZIP-code targeting and sticky sessions
+  - Dedicated and shared Datacenter Proxies, including free trial datacenter IPs
+  - Mobile Proxies (5G / 4G / 3G / LTE) with carrier and geo targeting
+  - ISP Proxies (static residential) — self-service and Dedicated ISP Enterprise tiers
+  - Datasets — pre-collected e-commerce, job-posting, product-review, company, and community-and-code
+    feeds; custom dataset service on request
+  - Official Oxylabs MCP server for Claude, Cursor, and other MCP-compatible AI clients
+  - Official Agent Skills for Oxylabs products
+  - Sub-user management and statistics via Residential Public API
+  - Dashboard API for usage, billing, team management
+  - Geo-targeting at country, state, city, ZIP/postal-code, coordinates, and ASN levels
+  - Domain locale results-language and e-commerce-localization controls
+  - JavaScript rendering and custom browser instructions (beta)
+  - Custom parsing instructions and built-in parsers for major SERP and e-commerce targets
+  - HTTP context and job-management primitives, callback / webhook delivery for Push-Pull
+  - HTTP, HTTPS, and SOCKS5 protocols across proxy products
+  - SOC 2 Type II, ISO/IEC 27001, GDPR, and CCPA compliance
+  - Oxy Proxy Manager browser extension and proxy manager apps
+  - Free trial across Web Scraper API, Web Unblocker, Residential, Datacenter, and Mobile proxies
+  - Pay-as-you-go and committed-use pricing; usage measured by request and by GB of proxy traffic
+  sources:
+  - https://oxylabs.io/products
+  - https://developers.oxylabs.io/
+  - https://oxylabs.io/llms.txt
+  - https://github.com/oxylabs
+  updated: '2026-05-25'
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+  X: apievangelist
+  url: https://apievangelist.com
