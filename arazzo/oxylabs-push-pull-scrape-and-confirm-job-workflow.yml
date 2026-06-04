@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: Oxylabs Push-Pull Scrape and Confirm Job
+  summary: Submit an asynchronous Web Scraper API job and branch on the returned job status.
+  description: >-
+    Submits a scraping job to the Oxylabs Web Scraper API Push-Pull endpoint,
+    which acknowledges the job and returns a job id and status rather than the
+    content itself. The workflow captures that acknowledgement and branches on
+    the reported status so a caller can route a still-running job to a later
+    pull while treating an immediately faulted submission as a terminal end.
+    Because this OpenAPI description exposes a single submitQuery operation and
+    no separate job-status or results-retrieval operation, the status branch is
+    driven entirely off the submit acknowledgement; the dedicated poll-and-get
+    steps of a full Push-Pull lifecycle are not available in the spec and are
+    represented here by branching on the acknowledged job status. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: oxylabsApi
+  url: ../openapi/oxylabs-openapi.yml
+  type: openapi
+workflows:
+- workflowId: push-pull-scrape-and-confirm-job
+  summary: Submit an async scrape job and branch on its acknowledged status.
+  description: >-
+    Submits a Push-Pull scrape with a callback URL, captures the job id and
+    status, and branches: a faulted status ends the flow while any other status
+    is treated as accepted for later retrieval.
+  inputs:
+    type: object
+    required:
+    - source
+    properties:
+      source:
+        type: string
+        description: Target source identifier (e.g. google_search, amazon, universal).
+      url:
+        type: string
+        description: Target URL for URL-based sources.
+      query:
+        type: string
+        description: Search query for query-based sources.
+      callback_url:
+        type: string
+        description: URL Oxylabs calls when the job finishes.
+      geo_location:
+        type: string
+        description: Geo-targeting location string.
+  steps:
+  - stepId: submitJob
+    description: >-
+      Submit the scrape to the Push-Pull server with a callback URL and capture
+      the acknowledged job id and status.
+    operationId: submitQuery
+    requestBody:
+      contentType: application/json
+      payload:
+        source: $inputs.source
+        url: $inputs.url
+        query: $inputs.query
+        callback_url: $inputs.callback_url
+        geo_location: $inputs.geo_location
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      jobId: $response.body#/job/id
+      jobStatus: $response.body#/job/status
+    onSuccess:
+    - name: jobFaulted
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.job.status == "faulted"
+        type: jsonpath
+    - name: jobAccepted
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.job.status != "faulted"
+        type: jsonpath
+  outputs:
+    jobId: $steps.submitJob.outputs.jobId
+    jobStatus: $steps.submitJob.outputs.jobStatus

@@ -334,6 +334,36 @@ apis:
   - type: Documentation
     url: https://oxylabs.io/products/datasets/community-and-code
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/oxylabs-account-statistics-dashboard-workflow.yml
+    name: Oxylabs Account Statistics Dashboard
+    summary: Assemble a dashboard view from available filters, usage statistics, and client statistics.
+  - url: arazzo/oxylabs-offboard-sub-user-workflow.yml
+    name: Oxylabs Offboard Sub-user
+    summary: Read a sub-user record then delete it from the residential account.
+  - url: arazzo/oxylabs-provision-sub-user-workflow.yml
+    name: Oxylabs Provision Sub-user
+    summary: Authenticate, create a residential proxy sub-user, and read back its record.
+  - url: arazzo/oxylabs-push-pull-scrape-and-confirm-job-workflow.yml
+    name: Oxylabs Push-Pull Scrape and Confirm Job
+    summary: Submit an asynchronous Web Scraper API job and branch on the returned job status.
+  - url: arazzo/oxylabs-realtime-scrape-and-verify-usage-workflow.yml
+    name: Oxylabs Realtime Scrape and Verify Usage
+    summary: Run a synchronous Web Scraper API job and confirm the scrape against account usage statistics.
+  - url: arazzo/oxylabs-residential-login-and-list-sub-users-workflow.yml
+    name: Oxylabs Residential Login and List Sub-users
+    summary: Exchange basic auth for a bearer token and list the residential proxy sub-users.
+  - url: arazzo/oxylabs-search-then-scrape-result-workflow.yml
+    name: Oxylabs Search Then Scrape Result
+    summary: Run a parsed search scrape, then scrape a discovered result URL with a second realtime job.
+  - url: arazzo/oxylabs-sub-user-usage-audit-workflow.yml
+    name: Oxylabs Sub-user Usage Audit
+    summary: Log in, list sub-users, and pull per-sub-user target statistics for an audit.
+  - url: arazzo/oxylabs-throttle-sub-user-traffic-workflow.yml
+    name: Oxylabs Throttle Sub-user Traffic
+    summary: Find a sub-user by name and patch its traffic limit and status.
 - type: Portal
   url: https://oxylabs.io/
 - type: Website

@@ -1,0 +1,71 @@
+arazzo: 1.0.1
+info:
+  title: Oxylabs Residential Login and List Sub-users
+  summary: Exchange basic auth for a bearer token and list the residential proxy sub-users.
+  description: >-
+    Authenticates against the Residential Public API by exchanging the
+    account username and password for a bearer token, then uses that token to
+    list the sub-users provisioned under the account. This is the foundational
+    bootstrap for any residential proxy management flow because every
+    management operation on the Residential API is bearer-authenticated while
+    only the login operation accepts basic auth. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: oxylabsApi
+  url: ../openapi/oxylabs-openapi.yml
+  type: openapi
+workflows:
+- workflowId: residential-login-and-list-sub-users
+  summary: Log in to the Residential API and list sub-users.
+  description: >-
+    Logs in with basic auth to obtain a bearer token and the account user id,
+    then lists the sub-users under that account.
+  inputs:
+    type: object
+    required:
+    - username
+    - password
+    properties:
+      username:
+        type: string
+        description: Residential API account username for basic auth.
+      password:
+        type: string
+        description: Residential API account password for basic auth.
+  steps:
+  - stepId: login
+    description: >-
+      Exchange the account username and password for a bearer token and the
+      numeric account user id.
+    operationId: residentialLogin
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Basic {$inputs.username}:{$inputs.password}"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      token: $response.body#/token
+      userId: $response.body#/user_id
+  - stepId: listSubUsers
+    description: >-
+      List the sub-users under the authenticated account using the freshly
+      issued bearer token.
+    operationId: listSubUsers
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $steps.login.outputs.token"
+    - name: userId
+      in: path
+      value: $steps.login.outputs.userId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      subUsers: $response.body
+  outputs:
+    token: $steps.login.outputs.token
+    userId: $steps.login.outputs.userId
+    subUsers: $steps.listSubUsers.outputs.subUsers

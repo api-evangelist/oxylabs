@@ -1,0 +1,96 @@
+arazzo: 1.0.1
+info:
+  title: Oxylabs Search Then Scrape Result
+  summary: Run a parsed search scrape, then scrape a discovered result URL with a second realtime job.
+  description: >-
+    Chains two Web Scraper API jobs into a discover-then-fetch flow. The first
+    job runs a parsed, query-based search source so the structured response
+    surfaces a result URL, and the workflow branches on whether a usable URL
+    was returned. When a URL is present a second realtime job scrapes that
+    target URL with JavaScript rendering and returns its content; when no URL
+    is present the flow ends after the search. Both jobs use the single
+    submitQuery operation against the Realtime server, so results arrive
+    synchronously in each response. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: oxylabsApi
+  url: ../openapi/oxylabs-openapi.yml
+  type: openapi
+workflows:
+- workflowId: search-then-scrape-result
+  summary: Parse a search result then scrape the discovered URL.
+  description: >-
+    Submits a parsed search scrape, branches on whether a result URL was
+    returned, and scrapes that URL with a second rendered realtime job.
+  inputs:
+    type: object
+    required:
+    - searchSource
+    - query
+    properties:
+      searchSource:
+        type: string
+        description: Query-based search source (e.g. google_search).
+      query:
+        type: string
+        description: Search query to run.
+      fetchSource:
+        type: string
+        description: Source used to scrape the discovered URL (e.g. universal).
+      geo_location:
+        type: string
+        description: Geo-targeting location string.
+  steps:
+  - stepId: search
+    description: >-
+      Run a parsed, query-based search so the structured response can surface a
+      result URL.
+    operationId: submitQuery
+    requestBody:
+      contentType: application/json
+      payload:
+        source: $inputs.searchSource
+        query: $inputs.query
+        parse: true
+        geo_location: $inputs.geo_location
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      resultUrl: $response.body#/results/0/url
+      searchContent: $response.body#/results/0/content
+    onSuccess:
+    - name: haveUrl
+      type: goto
+      stepId: scrapeResult
+      criteria:
+      - context: $response.body
+        condition: $.results[0].url != null
+        type: jsonpath
+    - name: noUrl
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results[0].url == null
+        type: jsonpath
+  - stepId: scrapeResult
+    description: >-
+      Scrape the discovered result URL with JavaScript rendering using a second
+      realtime job.
+    operationId: submitQuery
+    requestBody:
+      contentType: application/json
+      payload:
+        source: $inputs.fetchSource
+        url: $steps.search.outputs.resultUrl
+        render: html
+        geo_location: $inputs.geo_location
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      content: $response.body#/results/0/content
+      resultStatusCode: $response.body#/results/0/status_code
+  outputs:
+    resultUrl: $steps.search.outputs.resultUrl
+    content: $steps.scrapeResult.outputs.content

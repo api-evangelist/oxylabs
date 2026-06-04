@@ -1,0 +1,90 @@
+arazzo: 1.0.1
+info:
+  title: Oxylabs Sub-user Usage Audit
+  summary: Log in, list sub-users, and pull per-sub-user target statistics for an audit.
+  description: >-
+    Audits residential proxy consumption at the sub-user level. The workflow
+    logs in to the Residential Public API, lists the account sub-users to
+    confirm the audit scope, and then reads the target statistics for a chosen
+    sub-user. The target-stats read breaks consumption down by target so the
+    caller can attribute traffic to specific destinations. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: oxylabsApi
+  url: ../openapi/oxylabs-openapi.yml
+  type: openapi
+workflows:
+- workflowId: sub-user-usage-audit
+  summary: Pull per-target statistics for a residential proxy sub-user.
+  description: >-
+    Logs in, lists sub-users for scope, then reads the target statistics for
+    the chosen sub-user.
+  inputs:
+    type: object
+    required:
+    - username
+    - password
+    - subUserId
+    properties:
+      username:
+        type: string
+        description: Residential API account username for basic auth.
+      password:
+        type: string
+        description: Residential API account password for basic auth.
+      subUserId:
+        type: integer
+        description: Identifier of the sub-user to audit.
+  steps:
+  - stepId: login
+    description: >-
+      Exchange the account username and password for a bearer token and the
+      numeric account user id.
+    operationId: residentialLogin
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Basic {$inputs.username}:{$inputs.password}"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      token: $response.body#/token
+      userId: $response.body#/user_id
+  - stepId: listSubUsers
+    description: >-
+      List the account sub-users to confirm the audit scope.
+    operationId: listSubUsers
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $steps.login.outputs.token"
+    - name: userId
+      in: path
+      value: $steps.login.outputs.userId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      subUsers: $response.body
+  - stepId: targetStats
+    description: >-
+      Read the per-target statistics for the chosen sub-user.
+    operationId: getSubUserTargetStats
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $steps.login.outputs.token"
+    - name: userId
+      in: path
+      value: $steps.login.outputs.userId
+    - name: subUserId
+      in: path
+      value: $inputs.subUserId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      targetStats: $response.body
+  outputs:
+    subUsers: $steps.listSubUsers.outputs.subUsers
+    targetStats: $steps.targetStats.outputs.targetStats

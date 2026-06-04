@@ -1,0 +1,93 @@
+arazzo: 1.0.1
+info:
+  title: Oxylabs Account Statistics Dashboard
+  summary: Assemble a dashboard view from available filters, usage statistics, and client statistics.
+  description: >-
+    Assembles a consolidated statistics view for an Oxylabs account. The
+    workflow first lists the available statistics filter instances so the
+    caller knows which breakdowns can be requested, then pulls usage
+    statistics for a date window, and finally reads the account client
+    statistics. Together these three bearer-authenticated reads back a usage
+    dashboard without any write operations. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: oxylabsApi
+  url: ../openapi/oxylabs-openapi.yml
+  type: openapi
+workflows:
+- workflowId: account-statistics-dashboard
+  summary: Gather filters, usage, and client statistics for a dashboard.
+  description: >-
+    Lists available filter instances, pulls usage statistics for a date
+    window, and reads client statistics for the account.
+  inputs:
+    type: object
+    required:
+    - token
+    - userId
+    properties:
+      token:
+        type: string
+        description: Bearer token for the statistics and client APIs.
+      userId:
+        type: integer
+        description: Account user id for client statistics.
+      from:
+        type: string
+        description: Usage window start date (YYYY-MM-DD).
+      to:
+        type: string
+        description: Usage window end date (YYYY-MM-DD).
+  steps:
+  - stepId: listFilters
+    description: >-
+      List the available statistics filter instances so the caller knows which
+      breakdowns can be requested.
+    operationId: listStatsFilters
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.token"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      filters: $response.body
+  - stepId: usageStats
+    description: >-
+      Pull usage statistics for the supplied date window.
+    operationId: getUsageStats
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.token"
+    - name: from
+      in: query
+      value: $inputs.from
+    - name: to
+      in: query
+      value: $inputs.to
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      usage: $response.body
+  - stepId: clientStats
+    description: >-
+      Read the account client statistics to round out the dashboard.
+    operationId: getClientStats
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.token"
+    - name: userId
+      in: path
+      value: $inputs.userId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      clientStats: $response.body
+  outputs:
+    filters: $steps.listFilters.outputs.filters
+    usage: $steps.usageStats.outputs.usage
+    clientStats: $steps.clientStats.outputs.clientStats

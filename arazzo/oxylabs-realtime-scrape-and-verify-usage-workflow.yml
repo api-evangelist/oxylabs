@@ -1,0 +1,92 @@
+arazzo: 1.0.1
+info:
+  title: Oxylabs Realtime Scrape and Verify Usage
+  summary: Run a synchronous Web Scraper API job and confirm the scrape against account usage statistics.
+  description: >-
+    Submits a scraping job to the Oxylabs Web Scraper API Realtime endpoint,
+    which returns the rendered content synchronously, and then reads the
+    account usage statistics so the caller can confirm the request was billed
+    and inspect remaining capacity. The Realtime endpoint replaces the
+    asynchronous submit-then-poll pattern because the single submitQuery
+    operation returns results in the same response; the usage read closes the
+    loop in place of a separate job-status poll. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: oxylabsApi
+  url: ../openapi/oxylabs-openapi.yml
+  type: openapi
+workflows:
+- workflowId: realtime-scrape-and-verify-usage
+  summary: Scrape a target synchronously and verify usage was recorded.
+  description: >-
+    Submits a query-based or URL-based scrape to the Realtime server, captures
+    the returned content, and then pulls usage statistics for a date range to
+    confirm the consumption.
+  inputs:
+    type: object
+    required:
+    - source
+    properties:
+      source:
+        type: string
+        description: Target source identifier (e.g. google_search, amazon, universal).
+      url:
+        type: string
+        description: Target URL for URL-based sources.
+      query:
+        type: string
+        description: Search query for query-based sources.
+      render:
+        type: string
+        description: Set to "html" to render JavaScript with a headless browser.
+      geo_location:
+        type: string
+        description: Geo-targeting location string.
+      from:
+        type: string
+        description: Usage window start date (YYYY-MM-DD).
+      to:
+        type: string
+        description: Usage window end date (YYYY-MM-DD).
+  steps:
+  - stepId: scrapeTarget
+    description: >-
+      Submit the scrape to the Realtime server and receive the rendered
+      content in the response.
+    operationId: submitQuery
+    requestBody:
+      contentType: application/json
+      payload:
+        source: $inputs.source
+        url: $inputs.url
+        query: $inputs.query
+        render: $inputs.render
+        geo_location: $inputs.geo_location
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      content: $response.body#/results/0/content
+      resultStatusCode: $response.body#/results/0/status_code
+      resultUrl: $response.body#/results/0/url
+  - stepId: verifyUsage
+    description: >-
+      Read usage statistics for the supplied date window to confirm the scrape
+      was recorded against the account.
+    operationId: getUsageStats
+    parameters:
+    - name: from
+      in: query
+      value: $inputs.from
+    - name: to
+      in: query
+      value: $inputs.to
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      usage: $response.body
+  outputs:
+    content: $steps.scrapeTarget.outputs.content
+    resultStatusCode: $steps.scrapeTarget.outputs.resultStatusCode
+    usage: $steps.verifyUsage.outputs.usage

@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Oxylabs Provision Sub-user
+  summary: Authenticate, create a residential proxy sub-user, and read back its record.
+  description: >-
+    Provisions a new residential proxy sub-user end to end. The workflow logs
+    in to the Residential Public API to obtain a bearer token and the account
+    user id, creates a sub-user with a name, password, and traffic limit, and
+    then reads the sub-user record back to confirm the provisioning succeeded.
+    The create response does not echo the full record, so the read-back step
+    resolves the authoritative sub-user state. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: oxylabsApi
+  url: ../openapi/oxylabs-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-sub-user
+  summary: Create a residential proxy sub-user and confirm it.
+  description: >-
+    Logs in, creates a sub-user with the supplied name, password, and traffic
+    limit, then reads the sub-user record back to confirm.
+  inputs:
+    type: object
+    required:
+    - username
+    - password
+    - subUserId
+    - sub_user_name
+    - sub_user_password
+    properties:
+      username:
+        type: string
+        description: Residential API account username for basic auth.
+      password:
+        type: string
+        description: Residential API account password for basic auth.
+      subUserId:
+        type: integer
+        description: Identifier used to read the sub-user back after creation.
+      sub_user_name:
+        type: string
+        description: Name for the new sub-user.
+      sub_user_password:
+        type: string
+        description: Password for the new sub-user.
+      traffic_limit:
+        type: integer
+        description: Optional traffic limit for the new sub-user.
+  steps:
+  - stepId: login
+    description: >-
+      Exchange the account username and password for a bearer token and the
+      numeric account user id.
+    operationId: residentialLogin
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Basic {$inputs.username}:{$inputs.password}"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      token: $response.body#/token
+      userId: $response.body#/user_id
+  - stepId: createSubUser
+    description: >-
+      Create the sub-user under the authenticated account with the supplied
+      name, password, and traffic limit.
+    operationId: createSubUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $steps.login.outputs.token"
+    - name: userId
+      in: path
+      value: $steps.login.outputs.userId
+    requestBody:
+      contentType: application/json
+      payload:
+        sub_user_name: $inputs.sub_user_name
+        password: $inputs.sub_user_password
+        traffic_limit: $inputs.traffic_limit
+        status: active
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      created: $response.body
+  - stepId: confirmSubUser
+    description: >-
+      Read the sub-user record back to confirm the provisioning succeeded.
+    operationId: getSubUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $steps.login.outputs.token"
+    - name: userId
+      in: path
+      value: $steps.login.outputs.userId
+    - name: subUserId
+      in: path
+      value: $inputs.subUserId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      subUser: $response.body
+  outputs:
+    userId: $steps.login.outputs.userId
+    subUser: $steps.confirmSubUser.outputs.subUser

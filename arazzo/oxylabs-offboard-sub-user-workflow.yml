@@ -1,0 +1,93 @@
+arazzo: 1.0.1
+info:
+  title: Oxylabs Offboard Sub-user
+  summary: Read a sub-user record then delete it from the residential account.
+  description: >-
+    Removes a residential proxy sub-user safely. The workflow logs in to the
+    Residential Public API, reads the sub-user record so the caller can capture
+    its final state before removal, and then deletes the sub-user. Reading the
+    record first gives an auditable snapshot of the sub-user prior to the
+    destructive delete. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: oxylabsApi
+  url: ../openapi/oxylabs-openapi.yml
+  type: openapi
+workflows:
+- workflowId: offboard-sub-user
+  summary: Snapshot then delete a residential proxy sub-user.
+  description: >-
+    Logs in, reads the sub-user record for an audit snapshot, then deletes the
+    sub-user.
+  inputs:
+    type: object
+    required:
+    - username
+    - password
+    - subUserId
+    properties:
+      username:
+        type: string
+        description: Residential API account username for basic auth.
+      password:
+        type: string
+        description: Residential API account password for basic auth.
+      subUserId:
+        type: integer
+        description: Identifier of the sub-user to remove.
+  steps:
+  - stepId: login
+    description: >-
+      Exchange the account username and password for a bearer token and the
+      numeric account user id.
+    operationId: residentialLogin
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Basic {$inputs.username}:{$inputs.password}"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      token: $response.body#/token
+      userId: $response.body#/user_id
+  - stepId: snapshotSubUser
+    description: >-
+      Read the sub-user record to capture its final state before deletion.
+    operationId: getSubUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $steps.login.outputs.token"
+    - name: userId
+      in: path
+      value: $steps.login.outputs.userId
+    - name: subUserId
+      in: path
+      value: $inputs.subUserId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      subUser: $response.body
+  - stepId: deleteSubUser
+    description: >-
+      Delete the sub-user from the account.
+    operationId: deleteSubUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $steps.login.outputs.token"
+    - name: userId
+      in: path
+      value: $steps.login.outputs.userId
+    - name: subUserId
+      in: path
+      value: $inputs.subUserId
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      deletedStatus: $statusCode
+  outputs:
+    snapshot: $steps.snapshotSubUser.outputs.subUser
+    deletedStatus: $steps.deleteSubUser.outputs.deletedStatus
