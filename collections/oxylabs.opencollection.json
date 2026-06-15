@@ -1,0 +1,277 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oxylabs Web Intelligence APIs",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Submit a scraping job",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://realtime.oxylabs.io/v1/queries",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "basic",
+          "username": "{{username}}",
+          "password": "{{password}}"
+        }
+      },
+      "docs": "Submit a job to the Web Scraper API. Use the Realtime server to receive results synchronously, or the Push-Pull server to receive results asynchronously via callback or polling."
+    },
+    {
+      "info": {
+        "name": "List statistics filter instances",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://realtime.oxylabs.io/v1/stats/v1/filters/instances",
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "List statistics filter instances"
+    },
+    {
+      "info": {
+        "name": "Get usage statistics",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://realtime.oxylabs.io/v1/stats/v1/usage",
+        "params": [
+          {
+            "name": "from",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Get usage statistics"
+    },
+    {
+      "info": {
+        "name": "Residential API login",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://realtime.oxylabs.io/v1/login",
+        "auth": {
+          "type": "basic",
+          "username": "{{username}}",
+          "password": "{{password}}"
+        }
+      },
+      "docs": "Exchange username and password (basic auth) for a bearer token."
+    },
+    {
+      "info": {
+        "name": "List sub-users",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://realtime.oxylabs.io/v1/users/:userId/sub-users",
+        "params": [
+          {
+            "name": "userId",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "List sub-users"
+    },
+    {
+      "info": {
+        "name": "Create a sub-user",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://realtime.oxylabs.io/v1/users/:userId/sub-users",
+        "params": [
+          {
+            "name": "userId",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Create a sub-user"
+    },
+    {
+      "info": {
+        "name": "Get sub-user",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://realtime.oxylabs.io/v1/users/:userId/sub-users/:subUserId",
+        "params": [
+          {
+            "name": "userId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "subUserId",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Get sub-user"
+    },
+    {
+      "info": {
+        "name": "Update sub-user",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "https://realtime.oxylabs.io/v1/users/:userId/sub-users/:subUserId",
+        "params": [
+          {
+            "name": "userId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "subUserId",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Update sub-user"
+    },
+    {
+      "info": {
+        "name": "Delete sub-user",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://realtime.oxylabs.io/v1/users/:userId/sub-users/:subUserId",
+        "params": [
+          {
+            "name": "userId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "subUserId",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Delete sub-user"
+    },
+    {
+      "info": {
+        "name": "Get sub-user target statistics",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://realtime.oxylabs.io/v1/users/:userId/sub-users/:subUserId/target-stats",
+        "params": [
+          {
+            "name": "userId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "subUserId",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Get sub-user target statistics"
+    },
+    {
+      "info": {
+        "name": "Get client statistics",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://realtime.oxylabs.io/v1/users/:userId/client-stats",
+        "params": [
+          {
+            "name": "userId",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "token": "{{bearerToken}}"
+        }
+      },
+      "docs": "Get client statistics"
+    }
+  ],
+  "bundled": true
+}

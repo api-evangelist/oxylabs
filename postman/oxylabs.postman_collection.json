@@ -1,0 +1,1315 @@
+{
+  "info": {
+    "_postman_id": "45779a42-2dea-4997-9af5-3b49d18d6ca8",
+    "name": "Oxylabs Web Intelligence APIs",
+    "description": "Oxylabs provides web scraping and data extraction APIs including the Web Scraper API (Realtime and Push-Pull), the Dashboard API for usage and statistics, and the Residential Public API for sub-user and stats management.\n\nContact Support:\n Name: Oxylabs Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:14:01.000Z",
+    "updatedAt": "2026-06-05T15:14:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-45779a42-2dea-4997-9af5-3b49d18d6ca8"
+  },
+  "item": [
+    {
+      "name": "queries",
+      "item": [
+        {
+          "name": "Submit a scraping job",
+          "id": "09538dce-392e-4f39-911e-a6ac80f84ba4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"url\": \"<string>\",\n  \"query\": \"<string>\",\n  \"render\": \"html\",\n  \"parse\": \"<boolean>\",\n  \"geo_location\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user_agent_type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"parsing_instructions\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/queries",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "queries"
+              ]
+            },
+            "description": "Submit a job to the Web Scraper API. Use the Realtime server to receive results synchronously, or the Push-Pull server to receive results asynchronously via callback or polling."
+          },
+          "response": [
+            {
+              "id": "df93f9e7-ead8-4322-825c-f0aad5168363",
+              "name": "Scrape result (Realtime) or job acknowledgement (Push-Pull)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"url\": \"<string>\",\n  \"query\": \"<string>\",\n  \"render\": \"html\",\n  \"parse\": \"<boolean>\",\n  \"geo_location\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user_agent_type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"parsing_instructions\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/queries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"results\": [\n    {\n      \"content\": \"<string>\",\n      \"status_code\": \"<integer>\",\n      \"url\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"content\": \"<string>\",\n      \"status_code\": \"<integer>\",\n      \"url\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"job\": {\n    \"id\": \"<string>\",\n    \"status\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:14:02.000Z",
+              "updatedAt": "2026-06-05T15:14:02.000Z",
+              "uid": "35240-df93f9e7-ead8-4322-825c-f0aad5168363"
+            },
+            {
+              "id": "8fde84de-019c-4e6f-8812-228b74ad0f72",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"url\": \"<string>\",\n  \"query\": \"<string>\",\n  \"render\": \"html\",\n  \"parse\": \"<boolean>\",\n  \"geo_location\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user_agent_type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"parsing_instructions\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/queries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:14:02.000Z",
+              "updatedAt": "2026-06-05T15:14:02.000Z",
+              "uid": "35240-8fde84de-019c-4e6f-8812-228b74ad0f72"
+            },
+            {
+              "id": "0cd3c00e-21a7-4672-863f-34f106351a45",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"url\": \"<string>\",\n  \"query\": \"<string>\",\n  \"render\": \"html\",\n  \"parse\": \"<boolean>\",\n  \"geo_location\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user_agent_type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"parsing_instructions\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/queries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:14:02.000Z",
+              "updatedAt": "2026-06-05T15:14:02.000Z",
+              "uid": "35240-0cd3c00e-21a7-4672-863f-34f106351a45"
+            }
+          ],
+          "createdAt": "2026-06-05T15:14:02.000Z",
+          "updatedAt": "2026-06-05T15:14:02.000Z",
+          "uid": "35240-09538dce-392e-4f39-911e-a6ac80f84ba4"
+        }
+      ],
+      "id": "b9c199d4-73a6-4e2d-ba4e-a2929cab9067",
+      "createdAt": "2026-06-05T15:14:02.000Z",
+      "updatedAt": "2026-06-05T15:14:02.000Z",
+      "uid": "35240-b9c199d4-73a6-4e2d-ba4e-a2929cab9067"
+    },
+    {
+      "name": "stats",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "filters",
+              "item": [
+                {
+                  "name": "instances",
+                  "item": [
+                    {
+                      "name": "List statistics filter instances",
+                      "id": "857afdae-d149-4094-96cc-fd7401505f3d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/stats/v1/filters/instances",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "stats",
+                            "v1",
+                            "filters",
+                            "instances"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "2955be58-b4dd-4808-ab24-4bd551e11352",
+                          "name": "List of available filter instances",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/stats/v1/filters/instances",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "stats",
+                                "v1",
+                                "filters",
+                                "instances"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:02.000Z",
+                          "updatedAt": "2026-06-05T15:14:02.000Z",
+                          "uid": "35240-2955be58-b4dd-4808-ab24-4bd551e11352"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:02.000Z",
+                      "updatedAt": "2026-06-05T15:14:02.000Z",
+                      "uid": "35240-857afdae-d149-4094-96cc-fd7401505f3d"
+                    }
+                  ],
+                  "id": "02934ed3-a424-47d4-b404-d5c9895e020c",
+                  "createdAt": "2026-06-05T15:14:02.000Z",
+                  "updatedAt": "2026-06-05T15:14:02.000Z",
+                  "uid": "35240-02934ed3-a424-47d4-b404-d5c9895e020c"
+                }
+              ],
+              "id": "4d1240ec-1e1f-4ac6-b5ae-ad2512c7d2df",
+              "createdAt": "2026-06-05T15:14:02.000Z",
+              "updatedAt": "2026-06-05T15:14:02.000Z",
+              "uid": "35240-4d1240ec-1e1f-4ac6-b5ae-ad2512c7d2df"
+            },
+            {
+              "name": "usage",
+              "item": [
+                {
+                  "name": "Get usage statistics",
+                  "id": "0a186f38-b732-49f1-a9e0-cec8f0311755",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/stats/v1/usage?from=<date>&to=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stats",
+                        "v1",
+                        "usage"
+                      ],
+                      "query": [
+                        {
+                          "key": "from",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "to",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "59e6f40e-30e4-4ec0-ae78-c27b183a8be5",
+                      "name": "Usage statistics",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/stats/v1/usage?from=<date>&to=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "stats",
+                            "v1",
+                            "usage"
+                          ],
+                          "query": [
+                            {
+                              "key": "from",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "to",
+                              "value": "<date>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:14:02.000Z",
+                      "updatedAt": "2026-06-05T15:14:02.000Z",
+                      "uid": "35240-59e6f40e-30e4-4ec0-ae78-c27b183a8be5"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:02.000Z",
+                  "updatedAt": "2026-06-05T15:14:02.000Z",
+                  "uid": "35240-0a186f38-b732-49f1-a9e0-cec8f0311755"
+                }
+              ],
+              "id": "fce52d13-7aaf-486d-b84c-b86e488ee9c4",
+              "createdAt": "2026-06-05T15:14:02.000Z",
+              "updatedAt": "2026-06-05T15:14:02.000Z",
+              "uid": "35240-fce52d13-7aaf-486d-b84c-b86e488ee9c4"
+            }
+          ],
+          "id": "80178c5c-d3a5-4abc-8fd3-a5c79bb27905",
+          "createdAt": "2026-06-05T15:14:02.000Z",
+          "updatedAt": "2026-06-05T15:14:02.000Z",
+          "uid": "35240-80178c5c-d3a5-4abc-8fd3-a5c79bb27905"
+        }
+      ],
+      "id": "8f652f43-d494-4625-b6d3-78670215c6fc",
+      "createdAt": "2026-06-05T15:14:02.000Z",
+      "updatedAt": "2026-06-05T15:14:02.000Z",
+      "uid": "35240-8f652f43-d494-4625-b6d3-78670215c6fc"
+    },
+    {
+      "name": "login",
+      "item": [
+        {
+          "name": "Residential API login",
+          "id": "b52a9b9b-402a-4a29-813a-f9e9f45086d3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Exchange username and password (basic auth) for a bearer token."
+          },
+          "response": [
+            {
+              "id": "0d775c74-fb83-40b6-be5d-5a0acbdd0905",
+              "name": "Auth token issued",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"user_id\": \"<integer>\",\n  \"token\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:14:02.000Z",
+              "updatedAt": "2026-06-05T15:14:02.000Z",
+              "uid": "35240-0d775c74-fb83-40b6-be5d-5a0acbdd0905"
+            }
+          ],
+          "createdAt": "2026-06-05T15:14:02.000Z",
+          "updatedAt": "2026-06-05T15:14:02.000Z",
+          "uid": "35240-b52a9b9b-402a-4a29-813a-f9e9f45086d3"
+        }
+      ],
+      "id": "07d1b5d1-8aed-4602-b001-580bf0e6913a",
+      "createdAt": "2026-06-05T15:14:02.000Z",
+      "updatedAt": "2026-06-05T15:14:02.000Z",
+      "uid": "35240-07d1b5d1-8aed-4602-b001-580bf0e6913a"
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{userId}",
+          "item": [
+            {
+              "name": "sub-users",
+              "item": [
+                {
+                  "name": "{subUserId}",
+                  "item": [
+                    {
+                      "name": "target-stats",
+                      "item": [
+                        {
+                          "name": "Get sub-user target statistics",
+                          "id": "3b10adb4-aea8-462b-bac5-ad4c91c2c682",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:userId/sub-users/:subUserId/target-stats",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":userId",
+                                "sub-users",
+                                ":subUserId",
+                                "target-stats"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1e0584ec-2468-43f0-9fed-3ea786a5b317",
+                                  "key": "userId",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "a9971130-33e7-4437-8456-e7a9afb7615c",
+                                  "key": "subUserId",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "3aa5ab12-f360-4cf3-a257-5ab158dc7750",
+                              "name": "Target statistics",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/:userId/sub-users/:subUserId/target-stats",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    ":userId",
+                                    "sub-users",
+                                    ":subUserId",
+                                    "target-stats"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    },
+                                    {
+                                      "key": "subUserId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:02.000Z",
+                              "updatedAt": "2026-06-05T15:14:02.000Z",
+                              "uid": "35240-3aa5ab12-f360-4cf3-a257-5ab158dc7750"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:02.000Z",
+                          "updatedAt": "2026-06-05T15:14:02.000Z",
+                          "uid": "35240-3b10adb4-aea8-462b-bac5-ad4c91c2c682"
+                        }
+                      ],
+                      "id": "128aa6c8-b294-44dd-b715-2e920a75cc5f",
+                      "createdAt": "2026-06-05T15:14:02.000Z",
+                      "updatedAt": "2026-06-05T15:14:02.000Z",
+                      "uid": "35240-128aa6c8-b294-44dd-b715-2e920a75cc5f"
+                    },
+                    {
+                      "name": "Get sub-user",
+                      "id": "bc2f5970-3da4-4fa6-81b6-8767dd5becd5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/sub-users/:subUserId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "sub-users",
+                            ":subUserId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9c25a768-3364-47cc-b919-43b702c5be68",
+                              "key": "userId",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "d1530700-0b0d-4ffb-8c35-32276d74ffae",
+                              "key": "subUserId",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "acd3a29c-c581-4af9-9358-d11e5e51d469",
+                          "name": "Sub-user record",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:userId/sub-users/:subUserId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":userId",
+                                "sub-users",
+                                ":subUserId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userId"
+                                },
+                                {
+                                  "key": "subUserId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:02.000Z",
+                          "updatedAt": "2026-06-05T15:14:02.000Z",
+                          "uid": "35240-acd3a29c-c581-4af9-9358-d11e5e51d469"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:02.000Z",
+                      "updatedAt": "2026-06-05T15:14:02.000Z",
+                      "uid": "35240-bc2f5970-3da4-4fa6-81b6-8767dd5becd5"
+                    },
+                    {
+                      "name": "Update sub-user",
+                      "id": "952b097f-3a92-41db-91a8-97ada1bf3542",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sub_user_name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"traffic_limit\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/sub-users/:subUserId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "sub-users",
+                            ":subUserId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d1f0cad9-5d8e-4dd4-997e-042f09e34149",
+                              "key": "userId",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "87bc675d-6ff3-4c1d-b9e2-fc64f3b0615a",
+                              "key": "subUserId",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "a9e454dc-29eb-47ed-b17e-5c3772fef6ed",
+                          "name": "Updated",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"sub_user_name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"traffic_limit\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:userId/sub-users/:subUserId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":userId",
+                                "sub-users",
+                                ":subUserId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userId"
+                                },
+                                {
+                                  "key": "subUserId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:02.000Z",
+                          "updatedAt": "2026-06-05T15:14:02.000Z",
+                          "uid": "35240-a9e454dc-29eb-47ed-b17e-5c3772fef6ed"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:02.000Z",
+                      "updatedAt": "2026-06-05T15:14:02.000Z",
+                      "uid": "35240-952b097f-3a92-41db-91a8-97ada1bf3542"
+                    },
+                    {
+                      "name": "Delete sub-user",
+                      "id": "1f8ab232-cda6-4044-bb1f-99bb18811952",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/sub-users/:subUserId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "sub-users",
+                            ":subUserId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "89579a7c-778c-48c5-8bd9-895683fb0346",
+                              "key": "userId",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "bf5f875c-3c6d-458e-801f-fd8c1664d504",
+                              "key": "subUserId",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "e160f1af-c521-4cd2-8358-8561ff3dfcc9",
+                          "name": "Deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:userId/sub-users/:subUserId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":userId",
+                                "sub-users",
+                                ":subUserId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userId"
+                                },
+                                {
+                                  "key": "subUserId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:02.000Z",
+                          "updatedAt": "2026-06-05T15:14:02.000Z",
+                          "uid": "35240-e160f1af-c521-4cd2-8358-8561ff3dfcc9"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:02.000Z",
+                      "updatedAt": "2026-06-05T15:14:02.000Z",
+                      "uid": "35240-1f8ab232-cda6-4044-bb1f-99bb18811952"
+                    }
+                  ],
+                  "id": "cd3bae7c-a61f-4d32-bd30-2db604223bdd",
+                  "createdAt": "2026-06-05T15:14:02.000Z",
+                  "updatedAt": "2026-06-05T15:14:02.000Z",
+                  "uid": "35240-cd3bae7c-a61f-4d32-bd30-2db604223bdd"
+                },
+                {
+                  "name": "List sub-users",
+                  "id": "2076d104-17b8-45c0-9b9c-7af7f3afc025",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId/sub-users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId",
+                        "sub-users"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9bbc625b-7a5a-4349-8487-cd7c8916f49a",
+                          "key": "userId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "6c3bd727-e598-4f00-97ed-7fc783ce3b72",
+                      "name": "Sub-user list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/sub-users",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "sub-users"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:14:02.000Z",
+                      "updatedAt": "2026-06-05T15:14:02.000Z",
+                      "uid": "35240-6c3bd727-e598-4f00-97ed-7fc783ce3b72"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:02.000Z",
+                  "updatedAt": "2026-06-05T15:14:02.000Z",
+                  "uid": "35240-2076d104-17b8-45c0-9b9c-7af7f3afc025"
+                },
+                {
+                  "name": "Create a sub-user",
+                  "id": "2b781c75-1474-4896-983f-98d0aa218640",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sub_user_name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"traffic_limit\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId/sub-users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId",
+                        "sub-users"
+                      ],
+                      "variable": [
+                        {
+                          "id": "48e5f820-38f3-49ee-b1eb-7df2470a2536",
+                          "key": "userId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "297052a6-e8c4-4ef0-9fb8-b7ea00c0f8d1",
+                      "name": "Sub-user created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sub_user_name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"traffic_limit\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/sub-users",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "sub-users"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:14:02.000Z",
+                      "updatedAt": "2026-06-05T15:14:02.000Z",
+                      "uid": "35240-297052a6-e8c4-4ef0-9fb8-b7ea00c0f8d1"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:02.000Z",
+                  "updatedAt": "2026-06-05T15:14:02.000Z",
+                  "uid": "35240-2b781c75-1474-4896-983f-98d0aa218640"
+                }
+              ],
+              "id": "3684c418-a64b-4a9b-9006-4bc5bf0e0a32",
+              "createdAt": "2026-06-05T15:14:02.000Z",
+              "updatedAt": "2026-06-05T15:14:02.000Z",
+              "uid": "35240-3684c418-a64b-4a9b-9006-4bc5bf0e0a32"
+            },
+            {
+              "name": "client-stats",
+              "item": [
+                {
+                  "name": "Get client statistics",
+                  "id": "580d7657-fd39-43de-95c9-d28d5b9c50e2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId/client-stats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId",
+                        "client-stats"
+                      ],
+                      "variable": [
+                        {
+                          "id": "69025556-b1b3-44f0-a148-67ee3616346a",
+                          "key": "userId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d8e4d190-6392-4385-8d1c-4789154a2805",
+                      "name": "Client statistics",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/client-stats",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "client-stats"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:14:02.000Z",
+                      "updatedAt": "2026-06-05T15:14:02.000Z",
+                      "uid": "35240-d8e4d190-6392-4385-8d1c-4789154a2805"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:02.000Z",
+                  "updatedAt": "2026-06-05T15:14:02.000Z",
+                  "uid": "35240-580d7657-fd39-43de-95c9-d28d5b9c50e2"
+                }
+              ],
+              "id": "895d01b0-bafc-4b22-8e12-0a67ee0fc6de",
+              "createdAt": "2026-06-05T15:14:02.000Z",
+              "updatedAt": "2026-06-05T15:14:02.000Z",
+              "uid": "35240-895d01b0-bafc-4b22-8e12-0a67ee0fc6de"
+            }
+          ],
+          "id": "a8831fda-996a-47f9-bc9a-317b78e9925a",
+          "createdAt": "2026-06-05T15:14:02.000Z",
+          "updatedAt": "2026-06-05T15:14:02.000Z",
+          "uid": "35240-a8831fda-996a-47f9-bc9a-317b78e9925a"
+        }
+      ],
+      "id": "32f49b99-b3c3-42d6-bcd9-9883c56963c8",
+      "createdAt": "2026-06-05T15:14:02.000Z",
+      "updatedAt": "2026-06-05T15:14:02.000Z",
+      "uid": "35240-32f49b99-b3c3-42d6-bcd9-9883c56963c8"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://realtime.oxylabs.io/v1"
+    }
+  ]
+}

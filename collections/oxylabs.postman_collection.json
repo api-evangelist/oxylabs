@@ -1,0 +1,1268 @@
+{
+  "item": [
+    {
+      "id": "b8fa9ada-a011-45d2-9e88-a820b5b128ec",
+      "name": "Submit a scraping job",
+      "request": {
+        "name": "Submit a scraping job",
+        "description": {
+          "content": "Submit a job to the Web Scraper API. Use the Realtime server to receive results synchronously, or the Push-Pull server to receive results asynchronously via callback or polling.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "queries"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{basicAuthUsername}}"
+            },
+            {
+              "key": "password",
+              "value": "{{basicAuthPassword}}"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"source\": \"<string>\",\n  \"url\": \"<string>\",\n  \"query\": \"<string>\",\n  \"render\": \"<string>\",\n  \"parse\": \"<boolean>\",\n  \"geo_location\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user_agent_type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"browser_instructions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"parsing_instructions\": \"<object>\",\n  \"context\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6dd9823f-4763-4815-8c28-2550564f48e9",
+          "name": "Scrape result (Realtime) or job acknowledgement (Push-Pull)",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "queries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"url\": \"<string>\",\n  \"query\": \"<string>\",\n  \"render\": \"<string>\",\n  \"parse\": \"<boolean>\",\n  \"geo_location\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user_agent_type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"browser_instructions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"parsing_instructions\": \"<object>\",\n  \"context\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"results\": [\n    {\n      \"content\": \"string\",\n      \"status_code\": 4267,\n      \"url\": \"string\",\n      \"created_at\": \"1967-09-02T08:38:29.465Z\"\n    },\n    {\n      \"content\": \"string\",\n      \"status_code\": 7692,\n      \"url\": \"string\",\n      \"created_at\": \"1960-12-26T06:17:37.899Z\"\n    }\n  ],\n  \"job\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "de11fabe-5bea-437c-a0ff-697058253b82",
+          "name": "Bad request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "queries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"url\": \"<string>\",\n  \"query\": \"<string>\",\n  \"render\": \"<string>\",\n  \"parse\": \"<boolean>\",\n  \"geo_location\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user_agent_type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"browser_instructions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"parsing_instructions\": \"<object>\",\n  \"context\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "3325cf92-3b7b-4c81-a3ad-4bcb81bd049b",
+          "name": "Unauthorized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "queries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"url\": \"<string>\",\n  \"query\": \"<string>\",\n  \"render\": \"<string>\",\n  \"parse\": \"<boolean>\",\n  \"geo_location\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user_agent_type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"browser_instructions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"parsing_instructions\": \"<object>\",\n  \"context\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6cb088c7-a61d-469c-bd72-1220ed913189",
+      "name": "List statistics filter instances",
+      "request": {
+        "name": "List statistics filter instances",
+        "description": {},
+        "url": {
+          "path": [
+            "stats",
+            "v1",
+            "filters",
+            "instances"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "c68a9f6e-2744-462a-9d99-f5f468f93fd6",
+          "name": "List of available filter instances",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "stats",
+                "v1",
+                "filters",
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a62ec61d-3c24-4b39-8fd9-66963a3a8e1a",
+      "name": "Get usage statistics",
+      "request": {
+        "name": "Get usage statistics",
+        "description": {},
+        "url": {
+          "path": [
+            "stats",
+            "v1",
+            "usage"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "from",
+              "value": "<date>"
+            },
+            {
+              "disabled": false,
+              "key": "to",
+              "value": "<date>"
+            }
+          ],
+          "variable": []
+        },
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "f419e7f1-9ba1-48ac-ba74-4f95d0e7435e",
+          "name": "Usage statistics",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "stats",
+                "v1",
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "<date>"
+                },
+                {
+                  "key": "to",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "da16e708-e1f8-49a0-8ecd-a1fcb610fbd5",
+      "name": "Residential API login",
+      "request": {
+        "name": "Residential API login",
+        "description": {
+          "content": "Exchange username and password (basic auth) for a bearer token.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "login"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{basicAuthUsername}}"
+            },
+            {
+              "key": "password",
+              "value": "{{basicAuthPassword}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "82a29da3-dbf7-4c41-bafa-b2aa5f4773ba",
+          "name": "Auth token issued",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"user_id\": 1813,\n  \"token\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "501fbfd9-dcba-4704-a7a2-d4493bc86f2c",
+      "name": "List sub-users",
+      "request": {
+        "name": "List sub-users",
+        "description": {},
+        "url": {
+          "path": [
+            "users",
+            ":userId",
+            "sub-users"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "userId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "f486e008-7b88-4034-9f3e-a60e2304a8b5",
+          "name": "Sub-user list",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "users",
+                ":userId",
+                "sub-users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f3e5e142-448a-44cf-8ce8-ce3fd1d6045b",
+      "name": "Create a sub-user",
+      "request": {
+        "name": "Create a sub-user",
+        "description": {},
+        "url": {
+          "path": [
+            "users",
+            ":userId",
+            "sub-users"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "userId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sub_user_name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"traffic_limit\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "adda9933-6760-44a0-bf3d-e28b4fa3b6b8",
+          "name": "Sub-user created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "users",
+                ":userId",
+                "sub-users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sub_user_name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"traffic_limit\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f1a29fc0-363f-49c7-9e70-8b886291e51e",
+      "name": "Get sub-user",
+      "request": {
+        "name": "Get sub-user",
+        "description": {},
+        "url": {
+          "path": [
+            "users",
+            ":userId",
+            "sub-users",
+            ":subUserId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "userId",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "subUserId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "11a841b1-c1f9-4ed1-9d83-3fb2e56a44e9",
+          "name": "Sub-user record",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "users",
+                ":userId",
+                "sub-users",
+                ":subUserId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "subUserId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1cee4be2-88a7-48fb-9b17-c03746c4c6e0",
+      "name": "Update sub-user",
+      "request": {
+        "name": "Update sub-user",
+        "description": {},
+        "url": {
+          "path": [
+            "users",
+            ":userId",
+            "sub-users",
+            ":subUserId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "userId",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "subUserId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "PATCH",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sub_user_name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"traffic_limit\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "1bdff097-90ea-45dd-9d95-9ca499151b5d",
+          "name": "Updated",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "users",
+                ":userId",
+                "sub-users",
+                ":subUserId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "subUserId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sub_user_name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"traffic_limit\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "441af84b-8195-4c31-803b-a0f36b7d2671",
+      "name": "Delete sub-user",
+      "request": {
+        "name": "Delete sub-user",
+        "description": {},
+        "url": {
+          "path": [
+            "users",
+            ":userId",
+            "sub-users",
+            ":subUserId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "userId",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "subUserId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "3bf07cc7-8af9-409d-9f0f-bb9264ccee75",
+          "name": "Deleted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "users",
+                ":userId",
+                "sub-users",
+                ":subUserId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "subUserId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "62f6c216-2deb-4aeb-968d-6277814e8572",
+      "name": "Get sub-user target statistics",
+      "request": {
+        "name": "Get sub-user target statistics",
+        "description": {},
+        "url": {
+          "path": [
+            "users",
+            ":userId",
+            "sub-users",
+            ":subUserId",
+            "target-stats"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "userId",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "subUserId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "c37d5b71-161a-4733-a726-6fc32f6afc64",
+          "name": "Target statistics",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "users",
+                ":userId",
+                "sub-users",
+                ":subUserId",
+                "target-stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "subUserId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "23fc031d-d78c-4d4e-a723-8c327606c360",
+      "name": "Get client statistics",
+      "request": {
+        "name": "Get client statistics",
+        "description": {},
+        "url": {
+          "path": [
+            "users",
+            ":userId",
+            "client-stats"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "userId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "75c73f1b-c4e6-4484-aee2-20b5cd0e3880",
+          "name": "Client statistics",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "users",
+                ":userId",
+                "client-stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://realtime.oxylabs.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0658ef23-4609-4789-a4a7-c3ecd71a8101",
+    "name": "Oxylabs Web Intelligence APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Oxylabs provides web scraping and data extraction APIs including the Web Scraper API (Realtime and Push-Pull), the Dashboard API for usage and statistics, and the Residential Public API for sub-user and stats management.\n\nContact Support:\n Name: Oxylabs Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
