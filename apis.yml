@@ -286,9 +286,9 @@ apis:
         url: https://developers.oxylabs.io/get-started/quick-start-ai-studio
       - type: Documentation
         url: https://oxylabs.io/products/scraper-api/ai
-      - type: SDK
+      - type: SDKs
         url: https://github.com/oxylabs/oxylabs-ai-studio-py
-      - type: SDK
+      - type: SDKs
         url: https://github.com/oxylabs/oxylabs-ai-studio-js
       - type: Plugin
         url: https://github.com/oxylabs/oxylabs-ai-studio-openclaw
@@ -339,36 +339,33 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/oxylabs/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/oxylabs-account-statistics-dashboard-workflow.yml
-        name: Oxylabs Account Statistics Dashboard
-        summary: Assemble a dashboard view from available filters, usage statistics, and client statistics.
-      - url: arazzo/oxylabs-offboard-sub-user-workflow.yml
-        name: Oxylabs Offboard Sub-user
-        summary: Read a sub-user record then delete it from the residential account.
-      - url: arazzo/oxylabs-provision-sub-user-workflow.yml
-        name: Oxylabs Provision Sub-user
-        summary: Authenticate, create a residential proxy sub-user, and read back its record.
-      - url: arazzo/oxylabs-push-pull-scrape-and-confirm-job-workflow.yml
-        name: Oxylabs Push-Pull Scrape and Confirm Job
-        summary: Submit an asynchronous Web Scraper API job and branch on the returned job status.
-      - url: arazzo/oxylabs-realtime-scrape-and-verify-usage-workflow.yml
-        name: Oxylabs Realtime Scrape and Verify Usage
-        summary: Run a synchronous Web Scraper API job and confirm the scrape against account usage statistics.
-      - url: arazzo/oxylabs-residential-login-and-list-sub-users-workflow.yml
-        name: Oxylabs Residential Login and List Sub-users
-        summary: Exchange basic auth for a bearer token and list the residential proxy sub-users.
-      - url: arazzo/oxylabs-search-then-scrape-result-workflow.yml
-        name: Oxylabs Search Then Scrape Result
-        summary: Run a parsed search scrape, then scrape a discovered result URL with a second realtime job.
-      - url: arazzo/oxylabs-sub-user-usage-audit-workflow.yml
-        name: Oxylabs Sub-user Usage Audit
-        summary: Log in, list sub-users, and pull per-sub-user target statistics for an audit.
-      - url: arazzo/oxylabs-throttle-sub-user-traffic-workflow.yml
-        name: Oxylabs Throttle Sub-user Traffic
-        summary: Find a sub-user by name and patch its traffic limit and status.
+  - type: Arazzo
+    url: arazzo/oxylabs-account-statistics-dashboard-workflow.yml
+    name: Oxylabs Account Statistics Dashboard
+  - type: Arazzo
+    url: arazzo/oxylabs-offboard-sub-user-workflow.yml
+    name: Oxylabs Offboard Sub-user
+  - type: Arazzo
+    url: arazzo/oxylabs-provision-sub-user-workflow.yml
+    name: Oxylabs Provision Sub-user
+  - type: Arazzo
+    url: arazzo/oxylabs-push-pull-scrape-and-confirm-job-workflow.yml
+    name: Oxylabs Push-Pull Scrape and Confirm Job
+  - type: Arazzo
+    url: arazzo/oxylabs-realtime-scrape-and-verify-usage-workflow.yml
+    name: Oxylabs Realtime Scrape and Verify Usage
+  - type: Arazzo
+    url: arazzo/oxylabs-residential-login-and-list-sub-users-workflow.yml
+    name: Oxylabs Residential Login and List Sub-users
+  - type: Arazzo
+    url: arazzo/oxylabs-search-then-scrape-result-workflow.yml
+    name: Oxylabs Search Then Scrape Result
+  - type: Arazzo
+    url: arazzo/oxylabs-sub-user-usage-audit-workflow.yml
+    name: Oxylabs Sub-user Usage Audit
+  - type: Arazzo
+    url: arazzo/oxylabs-throttle-sub-user-traffic-workflow.yml
+    name: Oxylabs Throttle Sub-user Traffic
   - type: Portal
     url: https://oxylabs.io/
   - type: Website
@@ -386,7 +383,7 @@ common:
     url: https://oxylabs.io/integrations
   - type: GettingStarted
     url: https://developers.oxylabs.io/get-started/quick-start-proxies
-  - type: SignUp
+  - type: Signup
     url: https://dashboard.oxylabs.io/en/registration
   - type: Dashboard
     url: https://dashboard.oxylabs.io/
@@ -400,7 +397,7 @@ common:
   - type: RSS
     url: https://developers.oxylabs.io/rss.xml
   - name: LLMs.txt
-    type: LLMsTxt
+    type: LlmsText
     url: https://oxylabs.io/llms.txt
   - type: HelpCenter
     url: https://developers.oxylabs.io/help-center
@@ -453,52 +450,52 @@ common:
     type: MCPServer
     url: https://github.com/oxylabs/oxylabs-mcp
   - name: Agent Skills
-    type: AgentSkill
+    type: AgentSkills
     url: https://github.com/oxylabs/agent-skills
   - name: Python SDK (Web Scraper API)
-    type: SDK
+    type: SDKs
     url: https://github.com/oxylabs/oxylabs-sdk-python
   - name: Go SDK (Web Scraper API)
-    type: SDK
+    type: SDKs
     url: https://github.com/oxylabs/oxylabs-sdk-go
   - name: AI Studio Python SDK
-    type: SDK
+    type: SDKs
     url: https://github.com/oxylabs/oxylabs-ai-studio-py
   - name: AI Studio JavaScript / TypeScript SDK
-    type: SDK
+    type: SDKs
     url: https://github.com/oxylabs/oxylabs-ai-studio-js
   - name: AI Studio Openclaw Plugin
     type: Plugin
     url: https://github.com/oxylabs/oxylabs-ai-studio-openclaw
   - name: AI Browser Agent (Python)
-    type: SDK
+    type: SDKs
     url: https://github.com/oxylabs/browser-agent-py
   - name: AI Crawler (Python)
-    type: SDK
+    type: SDKs
     url: https://github.com/oxylabs/ai-crawler-py
   - name: AI Map (Python)
-    type: SDK
+    type: SDKs
     url: https://github.com/oxylabs/ai-map-py
   - name: AI Search (Python)
-    type: SDK
+    type: SDKs
     url: https://github.com/oxylabs/AI-Search-py
   - name: AI Scraper (Python)
-    type: SDK
+    type: SDKs
     url: https://github.com/oxylabs/ai-scraper-py
   - name: OxyMouse — Mouse Movement Library
-    type: SDK
+    type: SDKs
     url: https://github.com/oxylabs/OxyMouse
   - name: OxyParser
-    type: SDK
+    type: SDKs
     url: https://github.com/oxylabs/OxyParser
   - name: Web Unblocker (Code Examples)
     type: CodeExamples
     url: https://github.com/oxylabs/web-unblocker
   - name: Web Scraper API Scheduler
-    type: Tool
+    type: Tools
     url: https://github.com/oxylabs/Oxylabs-Web-Scraper-API-Scheduler
   - name: Oxy Proxy Chrome Extension
-    type: Tool
+    type: Tools
     url: https://github.com/oxylabs/proxy-chrome-extension
   - name: Proxy Integrations (Selenium, Playwright, Puppeteer, aiohttp)
     type: CodeExamples

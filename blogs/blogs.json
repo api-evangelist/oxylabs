@@ -3,20 +3,12 @@
   "feeds": [
     {
       "source": "https://oxylabs.io/blog",
-      "feed_url": "https://oxylabs.io/blog",
-      "title": "",
-      "saved": 0,
-      "method": "none"
-    },
-    {
-      "source": "https://oxylabs.io/developers/release-notes",
-      "error": "HTTPError"
-    },
-    {
-      "source": "https://oxylabs.io/pricing",
-      "error": "HTTPError"
+      "feed_url": "",
+      "saved": 2,
+      "method": "agent-scrape"
     }
   ],
-  "post_count": 3,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 5,
+  "fetched": "2026-06-27T12:59:23Z",
+  "agent_pulled": "2026-06-27"
 }
