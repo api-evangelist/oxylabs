@@ -337,6 +337,12 @@ apis:
       - type: Documentation
         url: https://oxylabs.io/products/datasets/community-and-code
 common:
+  - type: TrustCenter
+    url: security/oxylabs-trust-center.yml
+  - type: DomainSecurity
+    url: security/oxylabs-domain-security.yml
+  - type: Authentication
+    url: authentication/oxylabs-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/oxylabs/overview
   - type: Arazzo

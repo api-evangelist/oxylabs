@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/oxylabs-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/oxylabs-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/oxylabs-openapi.yml
