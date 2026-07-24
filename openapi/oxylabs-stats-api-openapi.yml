@@ -1,0 +1,64 @@
+openapi: 3.0.3
+info:
+  title: Oxylabs Web Intelligence APIs Login Stats API
+  description: Oxylabs provides web scraping and data extraction APIs including the Web Scraper API (Realtime and Push-Pull), the Dashboard API for usage and statistics, and the Residential Public API for sub-user and stats management.
+  version: '1.0'
+  contact:
+    name: Oxylabs Developer Support
+    url: https://developers.oxylabs.io/
+servers:
+- url: https://realtime.oxylabs.io/v1
+  description: Web Scraper API - Realtime
+- url: https://data.oxylabs.io/v1
+  description: Web Scraper API - Push-Pull
+- url: https://api.oxylabs.io
+  description: Dashboard API
+- url: https://residential-api.oxylabs.io/v2
+  description: Residential Public API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Stats
+paths:
+  /stats/v1/filters/instances:
+    get:
+      summary: List statistics filter instances
+      operationId: listStatsFilters
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: List of available filter instances
+      tags:
+      - Stats
+  /stats/v1/usage:
+    get:
+      summary: Get usage statistics
+      operationId: getUsageStats
+      security:
+      - bearerAuth: []
+      parameters:
+      - in: query
+        name: from
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: to
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Usage statistics
+      tags:
+      - Stats
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer

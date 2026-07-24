@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  title: Oxylabs Web Intelligence APIs Login Users API
+  description: Oxylabs provides web scraping and data extraction APIs including the Web Scraper API (Realtime and Push-Pull), the Dashboard API for usage and statistics, and the Residential Public API for sub-user and stats management.
+  version: '1.0'
+  contact:
+    name: Oxylabs Developer Support
+    url: https://developers.oxylabs.io/
+servers:
+- url: https://realtime.oxylabs.io/v1
+  description: Web Scraper API - Realtime
+- url: https://data.oxylabs.io/v1
+  description: Web Scraper API - Push-Pull
+- url: https://api.oxylabs.io
+  description: Dashboard API
+- url: https://residential-api.oxylabs.io/v2
+  description: Residential Public API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Users
+paths:
+  /users/{userId}/sub-users:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      summary: List sub-users
+      operationId: listSubUsers
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Sub-user list
+      tags:
+      - Users
+    post:
+      summary: Create a sub-user
+      operationId: createSubUser
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubUser'
+      responses:
+        '201':
+          description: Sub-user created
+      tags:
+      - Users
+  /users/{userId}/sub-users/{subUserId}:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    - $ref: '#/components/parameters/SubUserId'
+    get:
+      summary: Get sub-user
+      operationId: getSubUser
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Sub-user record
+      tags:
+      - Users
+    patch:
+      summary: Update sub-user
+      operationId: updateSubUser
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubUser'
+      responses:
+        '200':
+          description: Updated
+      tags:
+      - Users
+    delete:
+      summary: Delete sub-user
+      operationId: deleteSubUser
+      security:
+      - bearerAuth: []
+      responses:
+        '204':
+          description: Deleted
+      tags:
+      - Users
+  /users/{userId}/sub-users/{subUserId}/target-stats:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    - $ref: '#/components/parameters/SubUserId'
+    get:
+      summary: Get sub-user target statistics
+      operationId: getSubUserTargetStats
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Target statistics
+      tags:
+      - Users
+  /users/{userId}/client-stats:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      summary: Get client statistics
+      operationId: getClientStats
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Client statistics
+      tags:
+      - Users
+components:
+  parameters:
+    SubUserId:
+      in: path
+      name: subUserId
+      required: true
+      schema:
+        type: integer
+    UserId:
+      in: path
+      name: userId
+      required: true
+      schema:
+        type: integer
+  schemas:
+    SubUser:
+      type: object
+      properties:
+        sub_user_name:
+          type: string
+        password:
+          type: string
+        traffic_limit:
+          type: integer
+        status:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
