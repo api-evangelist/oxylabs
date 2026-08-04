@@ -1,0 +1,20 @@
+{
+  "provider": "oxylabs",
+  "sources": [
+    "oxylabs-login-api-openapi.yml",
+    "oxylabs-queries-api-openapi.yml",
+    "oxylabs-stats-api-openapi.yml",
+    "oxylabs-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "oxylabs-login-api-openapi.yml",
+    "oxylabs-queries-api-openapi.yml",
+    "oxylabs-stats-api-openapi.yml",
+    "oxylabs-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

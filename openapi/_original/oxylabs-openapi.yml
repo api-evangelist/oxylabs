@@ -1,0 +1,281 @@
+openapi: 3.0.3
+info:
+  title: Oxylabs Web Intelligence APIs
+  description: >-
+    Oxylabs provides web scraping and data extraction APIs including the
+    Web Scraper API (Realtime and Push-Pull), the Dashboard API for usage
+    and statistics, and the Residential Public API for sub-user and stats
+    management.
+  version: '1.0'
+  contact:
+    name: Oxylabs Developer Support
+    url: https://developers.oxylabs.io/
+servers:
+  - url: https://realtime.oxylabs.io/v1
+    description: Web Scraper API - Realtime
+  - url: https://data.oxylabs.io/v1
+    description: Web Scraper API - Push-Pull
+  - url: https://api.oxylabs.io
+    description: Dashboard API
+  - url: https://residential-api.oxylabs.io/v2
+    description: Residential Public API
+security:
+  - basicAuth: []
+  - bearerAuth: []
+paths:
+  /queries:
+    post:
+      summary: Submit a scraping job
+      description: >-
+        Submit a job to the Web Scraper API. Use the Realtime server to
+        receive results synchronously, or the Push-Pull server to receive
+        results asynchronously via callback or polling.
+      operationId: submitQuery
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScrapeRequest'
+      responses:
+        '200':
+          description: Scrape result (Realtime) or job acknowledgement (Push-Pull)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScrapeResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /stats/v1/filters/instances:
+    get:
+      summary: List statistics filter instances
+      operationId: listStatsFilters
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of available filter instances
+  /stats/v1/usage:
+    get:
+      summary: Get usage statistics
+      operationId: getUsageStats
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Usage statistics
+  /login:
+    post:
+      summary: Residential API login
+      description: Exchange username and password (basic auth) for a bearer token.
+      operationId: residentialLogin
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Auth token issued
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  token:
+                    type: string
+  /users/{userId}/sub-users:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      summary: List sub-users
+      operationId: listSubUsers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Sub-user list
+    post:
+      summary: Create a sub-user
+      operationId: createSubUser
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubUser'
+      responses:
+        '201':
+          description: Sub-user created
+  /users/{userId}/sub-users/{subUserId}:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/SubUserId'
+    get:
+      summary: Get sub-user
+      operationId: getSubUser
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Sub-user record
+    patch:
+      summary: Update sub-user
+      operationId: updateSubUser
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubUser'
+      responses:
+        '200':
+          description: Updated
+    delete:
+      summary: Delete sub-user
+      operationId: deleteSubUser
+      security:
+        - bearerAuth: []
+      responses:
+        '204':
+          description: Deleted
+  /users/{userId}/sub-users/{subUserId}/target-stats:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/SubUserId'
+    get:
+      summary: Get sub-user target statistics
+      operationId: getSubUserTargetStats
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Target statistics
+  /users/{userId}/client-stats:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      summary: Get client statistics
+      operationId: getClientStats
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Client statistics
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+  parameters:
+    UserId:
+      in: path
+      name: userId
+      required: true
+      schema:
+        type: integer
+    SubUserId:
+      in: path
+      name: subUserId
+      required: true
+      schema:
+        type: integer
+  schemas:
+    ScrapeRequest:
+      type: object
+      required:
+        - source
+      properties:
+        source:
+          type: string
+          description: Target source identifier (e.g., google_search, amazon, universal).
+        url:
+          type: string
+          description: Target URL (used by URL-based sources).
+        query:
+          type: string
+          description: Search query (used by query-based sources).
+        render:
+          type: string
+          description: Set to "html" to render JavaScript with a headless browser.
+          enum:
+            - html
+        parse:
+          type: boolean
+          description: Return structured parsed result for supported sources.
+        geo_location:
+          type: string
+          description: Geo-targeting location string.
+        locale:
+          type: string
+        user_agent_type:
+          type: string
+        callback_url:
+          type: string
+          format: uri
+        browser_instructions:
+          type: array
+          items:
+            type: object
+        parsing_instructions:
+          type: object
+        context:
+          type: array
+          items:
+            type: object
+    ScrapeResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              content:
+                type: string
+              status_code:
+                type: integer
+              url:
+                type: string
+              created_at:
+                type: string
+                format: date-time
+        job:
+          type: object
+          properties:
+            id:
+              type: string
+            status:
+              type: string
+    SubUser:
+      type: object
+      properties:
+        sub_user_name:
+          type: string
+        password:
+          type: string
+        traffic_limit:
+          type: integer
+        status:
+          type: string
