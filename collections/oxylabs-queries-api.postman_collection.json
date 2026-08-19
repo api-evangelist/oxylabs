@@ -1,0 +1,250 @@
+{
+  "item": [
+    {
+      "id": "d1b49dfc-72e5-4ba5-b6a2-f74ce4c442e9",
+      "name": "Queries",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f265447b-4ed5-4a23-befc-ced06328d9c1",
+          "name": "Submit a scraping job",
+          "request": {
+            "name": "Submit a scraping job",
+            "description": {
+              "content": "Submit a job to the Web Scraper API. Use the Realtime server to receive results synchronously, or the Push-Pull server to receive results asynchronously via callback or polling.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"url\": \"<string>\",\n  \"query\": \"<string>\",\n  \"render\": \"<string>\",\n  \"parse\": \"<boolean>\",\n  \"geo_location\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user_agent_type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"browser_instructions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"parsing_instructions\": \"<object>\",\n  \"context\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "45b9d2d2-1566-4168-83e6-81f714896ce7",
+              "name": "Scrape result (Realtime) or job acknowledgement (Push-Pull)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"url\": \"<string>\",\n  \"query\": \"<string>\",\n  \"render\": \"<string>\",\n  \"parse\": \"<boolean>\",\n  \"geo_location\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user_agent_type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"browser_instructions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"parsing_instructions\": \"<object>\",\n  \"context\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"content\": \"string\",\n      \"status_code\": 3204,\n      \"url\": \"string\",\n      \"created_at\": \"1989-12-24T00:24:58.154Z\"\n    },\n    {\n      \"content\": \"string\",\n      \"status_code\": 2863,\n      \"url\": \"string\",\n      \"created_at\": \"1977-10-22T00:33:14.295Z\"\n    }\n  ],\n  \"job\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c655522b-eefb-4bd5-a079-17bd087dcdd9",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"url\": \"<string>\",\n  \"query\": \"<string>\",\n  \"render\": \"<string>\",\n  \"parse\": \"<boolean>\",\n  \"geo_location\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user_agent_type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"browser_instructions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"parsing_instructions\": \"<object>\",\n  \"context\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa08a0b3-b429-40c8-a643-006017907b98",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"url\": \"<string>\",\n  \"query\": \"<string>\",\n  \"render\": \"<string>\",\n  \"parse\": \"<boolean>\",\n  \"geo_location\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"user_agent_type\": \"<string>\",\n  \"callback_url\": \"<uri>\",\n  \"browser_instructions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"parsing_instructions\": \"<object>\",\n  \"context\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://realtime.oxylabs.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "74fb6b4d-5748-4dc5-b5bf-5ce4f939199f",
+    "name": "Oxylabs Web Intelligence APIs Login Queries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Oxylabs provides web scraping and data extraction APIs including the Web Scraper API (Realtime and Push-Pull), the Dashboard API for usage and statistics, and the Residential Public API for sub-user and stats management.\n\nContact Support:\n Name: Oxylabs Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

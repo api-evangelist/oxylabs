@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oxylabs Web Intelligence APIs Login Queries API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a scraping job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://realtime.oxylabs.io/v1/queries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Submit a job to the Web Scraper API. Use the Realtime server to receive results synchronously, or the Push-Pull server to receive results asynchronously via callback or polling."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

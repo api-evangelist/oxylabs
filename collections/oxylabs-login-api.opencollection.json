@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oxylabs Web Intelligence APIs Login API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Login",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Residential API login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://realtime.oxylabs.io/v1/login",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Exchange username and password (basic auth) for a bearer token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
