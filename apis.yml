@@ -254,6 +254,11 @@ apis:
   - Claude
   - Cursor
   - MCP
+  tags_raw:
+  - AI Agents
+  - Claude
+  - Cursor
+  - MCP
   - Model Context Protocol
   properties:
   - type: Documentation
@@ -315,6 +320,8 @@ apis:
   humanURL: https://developers.oxylabs.io/scraping-solutions/web-scraper-api
   baseURL: https://realtime.oxylabs.io/v1
   tags:
+  - Query
+  tags_raw:
   - Queries
   properties:
   - type: OpenAPI
@@ -363,6 +370,8 @@ apis:
   humanURL: https://developers.oxylabs.io/scraping-solutions/web-scraper-api
   baseURL: https://realtime.oxylabs.io/v1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
