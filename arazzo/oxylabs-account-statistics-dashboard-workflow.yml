@@ -13,8 +13,11 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: oxylabsApi
-  url: ../openapi/oxylabs-openapi.yml
+- name: statsApi
+  url: ../openapi/oxylabs-stats-api-openapi.yml
+  type: openapi
+- name: usersApi
+  url: ../openapi/oxylabs-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: account-statistics-dashboard

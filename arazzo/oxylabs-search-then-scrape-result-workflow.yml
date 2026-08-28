@@ -15,8 +15,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: oxylabsApi
-  url: ../openapi/oxylabs-openapi.yml
+- name: queriesApi
+  url: ../openapi/oxylabs-queries-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: search-then-scrape-result

@@ -13,8 +13,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: oxylabsApi
-  url: ../openapi/oxylabs-openapi.yml
+- name: loginApi
+  url: ../openapi/oxylabs-login-api-openapi.yml
+  type: openapi
+- name: usersApi
+  url: ../openapi/oxylabs-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: residential-login-and-list-sub-users
