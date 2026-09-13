@@ -1,0 +1,39 @@
+generated: '2026-09-11'
+method: probed
+source: https://github.com/oxylabs/oxylabs-mcp
+status: published
+server:
+  name: oxylabs
+  transport: http
+  url: https://mcp.oxylabs.io/mcp
+deployment:
+  mode: remote
+  endpoint: https://mcp.oxylabs.io/mcp
+  verified: probed
+  probe: live
+  checked: '2026-09-11'
+  source: ptr_only reconciliation 2026-09-11 (apis.yml pointed here, no manifest existed)
+tools_count: 10
+tools:
+- name: ai_crawler
+  description: ''
+- name: ai_scraper
+  description: ''
+- name: ai_browser_agent
+  description: ''
+- name: ai_search
+  description: ''
+- name: generate_schema
+  description: ''
+- name: ai_map
+  description: ''
+- name: universal_scraper
+  description: ''
+- name: google_search_scraper
+  description: ''
+- name: amazon_search_scraper
+  description: ''
+- name: amazon_product_scraper
+  description: ''
+tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
+authorship: provider
