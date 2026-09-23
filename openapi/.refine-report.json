@@ -1,10 +1,7 @@
 {
   "provider": "oxylabs",
   "sources": [
-    "oxylabs-login-api-openapi.yml",
-    "oxylabs-queries-api-openapi.yml",
-    "oxylabs-stats-api-openapi.yml",
-    "oxylabs-users-api-openapi.yml"
+    "_original/oxylabs-openapi.yml"
   ],
   "outputs": [
     "oxylabs-login-api-openapi.yml",
@@ -15,6 +12,30 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "oxylabs-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "oxylabs-openapi.yml: tagged paths POST /queries -> Queries",
+    "oxylabs-openapi.yml: tagged paths GET /stats/v1/filters/instances -> Stats",
+    "oxylabs-openapi.yml: tagged paths GET /stats/v1/usage -> Stats",
+    "oxylabs-openapi.yml: tagged paths POST /login -> Login",
+    "oxylabs-openapi.yml: tagged paths GET /users/{userId}/sub-users -> Users",
+    "oxylabs-openapi.yml: tagged paths POST /users/{userId}/sub-users -> Users",
+    "oxylabs-openapi.yml: tagged paths GET /users/{userId}/sub-users/{subUserId} -> Users",
+    "oxylabs-openapi.yml: tagged paths PATCH /users/{userId}/sub-users/{subUserId} -> Users",
+    "oxylabs-openapi.yml: tagged paths DELETE /users/{userId}/sub-users/{subUserId} -> Users",
+    "oxylabs-openapi.yml: tagged paths GET /users/{userId}/sub-users/{subUserId}/target-stats -> Users",
+    "oxylabs-openapi.yml: tagged paths GET /users/{userId}/client-stats -> Users",
+    "oxylabs-openapi.yml: declared missing tag: Login",
+    "oxylabs-openapi.yml: declared missing tag: Queries",
+    "oxylabs-openapi.yml: declared missing tag: Stats",
+    "oxylabs-openapi.yml: declared missing tag: Users",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "oxylabs-login-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "oxylabs-queries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "oxylabs-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "oxylabs-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

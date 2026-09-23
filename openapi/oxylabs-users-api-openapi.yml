@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Oxylabs Web Intelligence APIs Login Users API
+  title: Oxylabs Web Intelligence Users API
   description: Oxylabs provides web scraping and data extraction APIs including the Web Scraper API (Realtime and Push-Pull), the Dashboard API for usage and statistics, and the Residential Public API for sub-user and stats management.
   version: '1.0'
   contact:
@@ -119,15 +119,15 @@ paths:
       - Users
 components:
   parameters:
-    SubUserId:
-      in: path
-      name: subUserId
-      required: true
-      schema:
-        type: integer
     UserId:
       in: path
       name: userId
+      required: true
+      schema:
+        type: integer
+    SubUserId:
+      in: path
+      name: subUserId
       required: true
       schema:
         type: integer
