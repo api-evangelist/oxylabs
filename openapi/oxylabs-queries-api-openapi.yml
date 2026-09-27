@@ -49,30 +49,6 @@ paths:
       - Queries
 components:
   schemas:
-    ScrapeResponse:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            type: object
-            properties:
-              content:
-                type: string
-              status_code:
-                type: integer
-              url:
-                type: string
-              created_at:
-                type: string
-                format: date-time
-        job:
-          type: object
-          properties:
-            id:
-              type: string
-            status:
-              type: string
     ScrapeRequest:
       type: object
       required:
@@ -115,6 +91,30 @@ components:
           type: array
           items:
             type: object
+    ScrapeResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              content:
+                type: string
+              status_code:
+                type: integer
+              url:
+                type: string
+              created_at:
+                type: string
+                format: date-time
+        job:
+          type: object
+          properties:
+            id:
+              type: string
+            status:
+              type: string
   securitySchemes:
     basicAuth:
       type: http
