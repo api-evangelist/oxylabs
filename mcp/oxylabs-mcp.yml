@@ -16,24 +16,40 @@ deployment:
 tools_count: 10
 tools:
 - name: ai_crawler
-  description: ''
+  description: Tool useful for crawling a website from starting url and returning data in a specified
+    format.  Schema is required only if output_format is json, csv or toon. 'render_javascript' is used
+    to render javascript heavy websites. 'return_sources_
 - name: ai_scraper
-  description: ''
+  description: Scrape the contents of the web page and return the data in the specified format.  Schema
+    is required only if output_format is json or csv. 'render_javascript' is used to render javascript
+    heavy websites.
 - name: ai_browser_agent
-  description: ''
+  description: Run the browser agent and return the data in the specified format.  This tool is useful
+    if you need navigate around the website and do some actions. It allows navigating to any url, clicking
+    on links, filling forms, scrolling, etc. Finally
 - name: ai_search
-  description: ''
+  description: Search the web based on a provided query.  'return_content' is used to return markdown
+    content for each search result. If 'return_content'     is set to True, you don't need to use ai_scraper
+    to get the content of the search results urls,
 - name: generate_schema
-  description: ''
+  description: Generate a json schema in openapi format.
 - name: ai_map
-  description: ''
+  description: Tool useful for mapping website's URLs.
 - name: universal_scraper
-  description: ''
+  description: Get a content of any webpage.  Supports browser rendering, parsing of certain webpages
+    and different output formats.
 - name: google_search_scraper
-  description: ''
+  description: Scrape Google Search results.  Supports content parsing, different user agent types, pagination,
+    domain, geolocation, locale parameters and different output formats.
 - name: amazon_search_scraper
-  description: ''
+  description: Scrape Amazon search results.  Supports content parsing, different user agent types, pagination,
+    domain, geolocation, locale parameters and different output formats. Supports Amazon specific parameters
+    such as category id, merchant id, curr
 - name: amazon_product_scraper
-  description: ''
+  description: Scrape Amazon products.  Supports content parsing, different user agent types, domain,
+    geolocation, locale parameters and different output formats. Supports Amazon specific parameters such
+    as currency and getting more accurate pricing data
 tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
