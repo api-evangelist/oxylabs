@@ -119,15 +119,15 @@ paths:
       - Users
 components:
   parameters:
-    UserId:
-      in: path
-      name: userId
-      required: true
-      schema:
-        type: integer
     SubUserId:
       in: path
       name: subUserId
+      required: true
+      schema:
+        type: integer
+    UserId:
+      in: path
+      name: userId
       required: true
       schema:
         type: integer
