@@ -3,9 +3,11 @@ method: searched
 checked:
 - https://azuremarketplace.microsoft.com/
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
 - https://registry.modelcontextprotocol.io/v0/servers
 - https://registry.npmjs.org/-/v1/search?text=keywords:n8n-community-node-package
 - https://zapier.com/api/v4/apps/
+- n8n/integrations/n8n-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -38,7 +40,7 @@ edges:
     registered_name: io.oxylabs/oxylabs-mcp
     register_id: io.oxylabs/oxylabs-mcp
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   mcp_registry:
     servers:
     - io.oxylabs/oxylabs-mcp
@@ -55,6 +57,21 @@ edges:
   - namespace-domain
   detected_by: sweep-agent-tools.py
   first_seen: '2026-10-14'
+- partner_name: n8n (n8n-community)
+  partner: n8n
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: n8n-community
+  evidence: https://www.npmjs.com/package/n8n-nodes-oxylabs-ai-studio
+  mirror_of: n8n/integrations/n8n-integration-edges.yml
+  apps: []
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -115,7 +132,7 @@ edges:
   channel: open-source-node
   relationship: ipaas-bridge
   direction: third-party
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/oxylabs
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/oxylabs
   category: null
   contract_reference:
     register: Pipedream components (PipedreamHQ/pipedream components/)
