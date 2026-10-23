@@ -11,14 +11,10 @@
     {
       "source": "https://developers.oxylabs.io/rss.xml",
       "error": "HTTPError"
-    },
-    {
-      "source": "https://oxylabs.io/developers/release-notes",
-      "error": "HTTPError"
     }
   ],
   "post_count": 5,
-  "fetched": "2026-10-10T13:15:00Z",
+  "fetched": "2026-10-17T14:53:57Z",
   "agent_pulled": "2026-06-27",
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
